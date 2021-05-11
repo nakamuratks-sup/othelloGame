@@ -1,0 +1,33 @@
+@startuml ゲーム進行
+participant クライアント as cl
+participant サーバ as sv
+participant ゲーム管理 as gm
+
+cl -> sv : 先攻後攻情報、パス回数
+sv -> cl : respons
+
+cl -> sv : ゲーム開始
+sv -> cl : 盤面情報
+
+loop
+    alt 置き石可能
+        cl -> sv : 石座標
+        sv -> gm
+        gm <-> 盤面管理 : プレーヤ石情報設定
+        gm -> 対戦CPU
+        対戦CPU -> 対戦CPU : CPU石設定
+        対戦CPU -> gm
+        gm <-> 盤面管理 : 盤面情報取得
+        gm -> sv
+        sv -> cl
+        cl <-> cl : 盤面描画
+    else パス
+        cl -> sv : パス通知
+        sv -> gm
+        gm <-> gm : パス回数更新
+        gm -> sv
+        sv -> cl : 現在のパス回数
+        cl <-> cl : パス回数更新
+    end
+end
+@enduml
