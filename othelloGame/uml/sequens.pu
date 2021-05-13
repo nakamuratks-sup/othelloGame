@@ -2,22 +2,27 @@
 participant クライアント as cl
 participant サーバ as sv
 participant ゲーム管理 as gm
+participant 盤面管理 as bord
 
-cl -> sv : 先攻後攻情報、パス回数
-sv -> cl : respons
+group ゲーム初期化
+    cl -> sv : ゲーム開始 \n 先攻後攻情報 \n パス回数
+    sv -> gm : セッション情報
+    gm -> bord
+    bord -> bord : 盤面初期化
+    bord -> gm
+    gm -> sv
+    sv -> cl : respons
+end
 
-cl -> sv : ゲーム開始
-sv -> cl : 盤面情報
-
-loop
+group ゲーム中
     alt 置き石可能
         cl -> sv : 石座標
         sv -> gm
-        gm <-> 盤面管理 : プレーヤ石情報設定
+        gm <-> bord : プレーヤ石情報設定
         gm -> 対戦CPU
         対戦CPU -> 対戦CPU : CPU石設定
         対戦CPU -> gm
-        gm <-> 盤面管理 : 盤面情報取得
+        gm <-> bord : 盤面情報取得
         gm -> sv
         sv -> cl
         cl <-> cl : 盤面描画
