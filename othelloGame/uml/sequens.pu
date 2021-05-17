@@ -1,10 +1,14 @@
 @startuml ゲーム進行
+participant 初期画面 as initView
+participant ゲーム画面 as playView
+participant 結果画面 as resultView
 participant クライアント as cl
 participant サーバ as sv
 participant ゲーム管理 as gm
 participant 盤面管理 as bord
 
 group ゲーム初期化
+    initView -> cl
     cl -> sv : ゲーム開始 \n 先攻後攻情報 \n パス回数
     sv -> gm : セッション情報
     gm -> bord
@@ -12,10 +16,12 @@ group ゲーム初期化
     bord -> gm
     gm -> sv
     sv -> cl : respons
+    cl -> playView
 end
 
 group ゲーム中
     alt 置き石可能
+    playView -> cl
         cl -> sv : 石座標
         sv -> gm
         gm <-> bord : プレーヤ石情報設定
@@ -23,16 +29,22 @@ group ゲーム中
         対戦CPU -> 対戦CPU : CPU石設定
         対戦CPU -> gm
         gm <-> bord : 盤面情報取得
+        gm <-> bord : 石の数取得
         gm -> sv
         sv -> cl
-        cl <-> cl : 盤面描画
+        cl -> playView
+        playView <-> playView : 盤面描画
     else パス
+        playView -> cl : パスボタン押下
+        activate cl
         cl -> sv : パス通知
         sv -> gm
         gm <-> gm : パス回数更新
         gm -> sv
         sv -> cl : 現在のパス回数
-        cl <-> cl : パス回数更新
+        cl -> playView
+        deactivate  cl
+        playView <-> playView : パス回数更新
     end
 end
 @enduml
