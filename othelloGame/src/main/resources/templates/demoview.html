@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+
+	<link rel="stylesheet" th:href="@{/css/demoview.css}" href="../static/css/demoview.css">
 </head>
+
 <body>
 	<table border="1">
 		<tr>
-			<td>aaa</td>
+			<td id="1" class="cell"></td>
+			<td id="2" class="cell"></td>
+			<td id="3" class="cell"></td>
+		</tr>
+		<tr>
+			<td id="4" class="cell"></td>
+			<td id="5" class="cell"></td>
+			<td id="6" class="cell"></td>
+		</tr>
+		<tr>
+			<td id="7" class="cell"></td>
+			<td id="8" class="cell"></td>
+			<td id="9" class="cell"></td>
 		</tr>
 	</table>
-	<button type="button" >送信</button>
+	<p id="msg"></p>
+	
+	<form method="GET" action="#" th:action="@{/demo}">
+		<input type="submit" value="送信">
+	</form>
+
+	<form method="GET" action="#" th:action="@{/demo/gettime}">
+		<input type="submit" value="送る"></input>
+	</form>
 
 	<p th:text="${timestamp}">ここにサーバで取得した時間が設定されるハズ</p>
 </body>
+
+<!-- th:src はspringbootで実行時 -->
+<script th:src="@{/js/demoview.js}" src="../static/js/demoview.js"></script>
+
 </html>

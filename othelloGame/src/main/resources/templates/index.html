@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!-- thymeleafを使うには上記が必用 -->
+
 <head>
-<meta charset="UTF-8">
-<title>Hello World</title>
+	<meta charset="UTF-8">
+	<title>Hello World</title>
 </head>
+
 <body>
 	<h1>springBoot Helloworld Sample</h1>
 	<p>
-	<!-- HelloWorldSampleクラスから渡されたModelの中身をthymeleafが解釈して値を埋め込む -->
+		<!-- HelloWorldSampleクラスから渡されたModelの中身をthymeleafが解釈して値を埋め込む -->
 		<span th:text="${message}"></span>
 	</p>
 </body>
+
 </html>

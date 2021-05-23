@@ -21,7 +21,7 @@ public class DemoController {
 
 	}
 
-	@RequestMapping(path = "/demo", method = RequestMethod.GET)
+	@RequestMapping(path = "/demo/gettime", method = RequestMethod.GET)
 	public String demoMethodSeond(Model model) {
 		model.addAttribute("timestamp", new Date().toString());
 		return "demoview";
