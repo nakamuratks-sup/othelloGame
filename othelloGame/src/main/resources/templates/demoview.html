@@ -8,6 +8,7 @@
 	<title>Insert title here</title>
 
 	<link rel="stylesheet" th:href="@{/css/demoview.css}" href="../static/css/demoview.css">
+	
 </head>
 
 <body>
@@ -40,6 +41,8 @@
 
 	<p th:text="${timestamp}">ここにサーバで取得した時間が設定されるハズ</p>
 </body>
+<!-- jQueryのライブラリ参照先 CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- th:src はspringbootで実行時 -->
 <script th:src="@{/js/demoview.js}" src="../static/js/demoview.js"></script>

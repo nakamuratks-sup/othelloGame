@@ -20,4 +20,22 @@ function clickMe(e) {
     myNameSpace.preElement = this;
 
     document.getElementById("msg").textContent = this.id;
+
+    postmsg(this.id);
 };
+
+function postmsg(id) {
+    // $.post("/demo/setposition", 
+    // {position: id},
+    //     function (data, textStatus, jqXHR) {
+    //         alert("rcv:" + timestamp);
+    //     },
+    //     "dataType"
+    // );
+
+    $.post("/demo/setposition", {position: id})
+        .done(function(data) {
+            alert("rcv : " + "なんか受け取れた");
+        })
+    
+}
