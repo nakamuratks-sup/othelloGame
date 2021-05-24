@@ -11,6 +11,7 @@ document. getElementById('9').addEventListener( 'click', clickMe, false);
 
 var myNameSpace = {};
 myNameSpace.preElement = null;
+myNameSpace.rcvdata = null;
 
 function clickMe(e) {
     this.textContent = this.id;
@@ -22,6 +23,8 @@ function clickMe(e) {
     document.getElementById("msg").textContent = this.id;
 
     postmsg(this.id);
+    // document.getElementById("tmstmp").textContent = myNameSpace.rcvdata;
+
 };
 
 function postmsg(id) {
@@ -35,7 +38,14 @@ function postmsg(id) {
 
     $.post("/demo/setposition", {position: id})
         .done(function(data) {
-            alert("rcv : " + "なんか受け取れた");
+            // サーバからの戻りがdataに入る
+            // そこからidを指定して値を取得
+            var tmp = $(data).filter('#rcvmsg');
+            // alert("rcv : " + tmp.text() );
+
+            // 設定先のidを取得して値を設定
+            var tmp2 = $('#tmstmp');
+            tmp2.text(tmp.text());
         })
     
 }

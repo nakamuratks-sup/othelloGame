@@ -34,6 +34,7 @@ public class DemoController {
 	public String demoMethodThird(HttpSession session, Model model, @RequestParam("position") String position) {
 		model.addAttribute("timestamp", position + "に置きました。");
 		log.info(position);
-		return "demoview";
+		// return "demoview";
+		return "recieve";
 	}
 }
