@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>オセロ開始画面</title>
+  <!--unnecessary
+<meta name="description "content="このページはオセロゲームの開始画面です">
+<meta name="keywords "content="オセロ,ゲーム">
+Unnecessary-->
+  <script src="../static/kaishi.js" type="text/javascript"></script>
+  <link href="../static/layput.css" rel="stylesheet" type="text/css" media="screen,print">
+</head>
+
+<body>
+  <div id="start">
+
+    <h1>スタート画面</h1>
+
+    <div id="select">
+      <label><input type="radio" name="attack" value="1">先手</label>
+      <label><input type="radio" name="attack" value="2" checked>後手</label>
+    </div>
+
+    <div id="button">
+      <input type="button" value="スタート" id="startbutton" onclick="start();" />
+    </div>
+
+    <form method="POST" action="#" th:action="@{/demo}">
+      <input type="submit" value="送信">
+    </form>
+
+  </div>
+</body>
+
+</html>

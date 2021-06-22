@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	margin: auto;
+	width: 950px;
+	background-color: black;
+}
+
+#start {
+	text-align: center;
+	color: aliceblue;
+}
+
+#select {
+	margin: 50px;
+}
+
+#button {
+	margin: 100px;
+}
