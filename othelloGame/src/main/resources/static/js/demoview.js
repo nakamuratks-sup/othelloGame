@@ -74,20 +74,16 @@ function jsonPost(id) {
   $("#jsr2").text("");
 
   // 送信用jsonデータ
-  var jsonlist1 = [
-    {
-      bangou: id,
-      name: "山田",
-    },
-    {
-      bangou: id,
-      name: "佐藤",
-    },
-  ];
 
-  var json1 = {
-    bangou: id,
-    name: "山田",
+  // 木構造のjson作成
+  // key名はjava側の変数名と合わせること
+  var demoDto = {
+    xpos: 1,
+    ypos: 2,
+  };
+  var sendjson = {
+    demoDto,
+    jsonSampleDto: getTableImage(),
   };
 
   // ajaxによる非同期通信処理
@@ -95,9 +91,7 @@ function jsonPost(id) {
     url: "/sample/json",
     type: "POST",
     contentType: "application/json",
-    // data: JSON.stringify(jsonlist1),
-    // テーブル情報をjson化したものをサーバへ送る
-    data: JSON.stringify(getTableImage()),
+    data: JSON.stringify(sendjson),
     dataType: "json",
   })
     .done(function (date1, textStatus, jqXHR) {
@@ -108,8 +102,7 @@ function jsonPost(id) {
       $("#jsr2").text(JSON.stringify(date1));
 
       // 変数をidとして別のテーブルid指定する
-      // $(`#${id}a`).text(`${id}`);
-      setTableImage(date1);
+      setTableImage(date1["jsonSampleDto"]);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
       // 異常応答時処理
@@ -133,8 +126,8 @@ function getTableImage() {
   });
 
   // 作成内容をコンソールに表示
-  console.log(line);
-  console.log(JSON.stringify(line));
+  // console.log(line);
+  // console.log(JSON.stringify(line));
   return line;
 }
 

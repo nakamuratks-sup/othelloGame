@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jp.co.supply_net.game.othello.dto.DemoDto;
+import jp.co.supply_net.game.othello.dto.JsonMapSampleDto;
 import jp.co.supply_net.game.othello.dto.JsonSampleDto;
 
 @RestController
@@ -26,8 +28,8 @@ public class JsonRcvController {
         return jsonSampleDto;
     }
 
-    @PostMapping(path="/json")
-    @ResponseBody
+    // @PostMapping(path="/json")
+    // @ResponseBody
     public List<JsonSampleDto> output1( @RequestBody List<JsonSampleDto> jsonSampleDto) {
         // クライアントから来たjsonをspringがJsonSampleDtoに変換して渡される場所
         for(JsonSampleDto masu: jsonSampleDto){
@@ -35,5 +37,29 @@ public class JsonRcvController {
             log.info(masu.getName());
         }
         return jsonSampleDto;
+    }
+
+    // @PostMapping(path="/json")
+    // @ResponseBody
+    public String output1( @RequestBody String jsonString) {
+        // クライアントから来たjsonをspringがJsonSampleDtoに変換して渡される場所
+        log.info(jsonString);
+        return jsonString;
+    }
+
+    @PostMapping(path="/json")
+    @ResponseBody
+    public JsonMapSampleDto output1( @RequestBody JsonMapSampleDto jsonMapDto) {
+        // クライアントから来たjsonをspringがJsonSampleDtoに変換して渡される場所
+
+        DemoDto demo = jsonMapDto.getDemoDto();
+        log.info("x:" + demo.getXpos());
+        log.info("y:" + demo.getYpos());
+
+        for(JsonSampleDto masu: jsonMapDto.getJsonSampleDto()){
+            log.info(masu.getBangou());
+            log.info(masu.getName());
+        }
+        return jsonMapDto;
     }
 }
