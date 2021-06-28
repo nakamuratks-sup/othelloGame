@@ -31,10 +31,11 @@ public class OthelloController {
         // ゲーム管理にてゲーム盤のインスタンス生成
         // ゲーム画面表示
     	int maxPath = initGameDto.getMaxPath();
-    	String playerStone = initGameDto.getPlayerStone();
+    	int playerStone = initGameDto.getPlayerStone();
 //    	new GameMaster(maxPath);
-    	gm.setMaxpath(maxPath);
-    	gm.setPlayerStone(playerStone);
+    	//gm.setMaxpath(maxPath);
+    	//gm.setPlayerStone(playerStone);
+        gm.gameStart(maxPath, playerStone);
     	
         return "demoview";
     }
