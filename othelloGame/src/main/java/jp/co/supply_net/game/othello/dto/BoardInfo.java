@@ -13,7 +13,7 @@ public class BoardInfo implements Serializable{
     
     private List<Masu> boardList; //64個のマス情報
     private String putPosition; //最後に置いた場所
-    private String passInfo; //パスかどうか
+    private String passInfo; //パスかどうかです
 
     public class Masu{
         private String number; //通し番号
