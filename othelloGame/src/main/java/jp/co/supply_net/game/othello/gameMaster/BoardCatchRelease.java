@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import jp.co.supply_net.game.othello.controller.JsonController;
-import jp.co.supply_net.game.othello.dto.BoardInfo;
 
 public class BoardCatchRelease {
 
@@ -15,10 +14,12 @@ public class BoardCatchRelease {
     private String putPosition;
     private String passInfo;
 
+    //Jsonから取得
     public void setBoardList(List boardList) {
         this.boardList = boardList;
     }
 
+    //最後に置いたマス
     public void setPutPusition(String putPosition) {
         this.putPosition = putPosition;
     }
