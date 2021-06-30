@@ -14,6 +14,7 @@
 <body>
 	<table border="1">
 		<tr>
+			<td id="0" class="cell"></td>
 			<td id="1" class="cell"></td>
 			<td id="2" class="cell"></td>
 			<td id="3" class="cell"></td>
@@ -21,9 +22,9 @@
 			<td id="5" class="cell"></td>
 			<td id="6" class="cell"></td>
 			<td id="7" class="cell"></td>
-			<td id="8" class="cell"></td>
 		</tr>
 		<tr>
+			<td id="8" class="cell"></td>
 			<td id="9" class="cell"></td>
 			<td id="10" class="cell"></td>
 			<td id="11" class="cell"></td>
@@ -31,9 +32,9 @@
 			<td id="13" class="cell"></td>
 			<td id="14" class="cell"></td>
 			<td id="15" class="cell"></td>
-			<td id="16" class="cell"></td>
 		</tr>
 		<tr>
+			<td id="16" class="cell"></td>
 			<td id="17" class="cell"></td>
 			<td id="18" class="cell"></td>
 			<td id="19" class="cell"></td>
@@ -41,9 +42,9 @@
 			<td id="21" class="cell"></td>
 			<td id="22" class="cell"></td>
 			<td id="23" class="cell"></td>
-			<td id="24" class="cell"></td>
 		</tr>
 		<tr>
+			<td id="24" class="cell"></td>
 			<td id="25" class="cell"></td>
 			<td id="26" class="cell"></td>
 			<td id="27" class="cell"></td>
@@ -51,9 +52,10 @@
 			<td id="29" class="cell"></td>
 			<td id="30" class="cell"></td>
 			<td id="31" class="cell"></td>
-			<td id="32" class="cell"></td>
+			
 		</tr>
 		<tr>
+			<td id="32" class="cell"></td>
 			<td id="33" class="cell"></td>
 			<td id="34" class="cell"></td>
 			<td id="35" class="cell"></td>
@@ -61,9 +63,10 @@
 			<td id="37" class="cell"></td>
 			<td id="38" class="cell"></td>
 			<td id="39" class="cell"></td>
-			<td id="40" class="cell"></td>
+			
 		</tr>
 		<tr>
+			<td id="40" class="cell"></td>
 			<td id="41" class="cell"></td>
 			<td id="42" class="cell"></td>
 			<td id="43" class="cell"></td>
@@ -71,9 +74,10 @@
 			<td id="45" class="cell"></td>
 			<td id="46" class="cell"></td>
 			<td id="47" class="cell"></td>
-			<td id="48" class="cell"></td>
+			
 		</tr>
 		<tr>
+			<td id="48" class="cell"></td>
 			<td id="49" class="cell"></td>
 			<td id="50" class="cell"></td>
 			<td id="51" class="cell"></td>
@@ -81,9 +85,9 @@
 			<td id="53" class="cell"></td>
 			<td id="54" class="cell"></td>
 			<td id="55" class="cell"></td>
-			<td id="56" class="cell"></td>
 		</tr>
 		<tr>
+			<td id="56" class="cell"></td>
 			<td id="57" class="cell"></td>
 			<td id="58" class="cell"></td>
 			<td id="59" class="cell"></td>
@@ -91,7 +95,6 @@
 			<td id="61" class="cell"></td>
 			<td id="62" class="cell"></td>
 			<td id="63" class="cell"></td>
-			<td id="64" class="cell"></td>
 		</tr>
 	</table>
 	<p id="msg"></p>
@@ -101,7 +104,7 @@
 	</form>
 
 	<form method="GET" action="#" th:action="@{/demo/gettime}">
-		<input type="submit" value="送る"></input>
+		<input type="submit" value="送る">
 	</form>
 
 	<p id="tmstmp" th:text="${timestamp}">ここにサーバで取得した時間が設定されるハズ</p>
