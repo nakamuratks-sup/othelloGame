@@ -4,8 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import jp.co.supply_net.game.othello.controller.JsonController;
-//import jp.co.supply_net.game.othello.gameMaster.Convert;
-import jp.co.supply_net.game.othello.gameMaster.BoardCatchRelease;
+import jp.co.supply_net.game.othello.enemy.OthelloEnemyFactory;
 import jp.co.supply_net.game.othello.gameMaster.GameMaster;
 import jp.co.supply_net.game.othello.gameMaster.OthelloBoardFactory;
 
@@ -18,7 +17,7 @@ public class CreateBean {
 //		ボードオブジェクトの設定
 //		gm.setBord(new Bord());
 		return gm;
-		
+
 	}
 
 	@Bean
@@ -44,6 +43,12 @@ public class CreateBean {
 	@Bean
 	public OthelloBoardFactory getOthelloBoardFactory() {
 		OthelloBoardFactory factory = new OthelloBoardFactory();
+		return factory;
+	}
+
+	@Bean
+	public OthelloEnemyFactory getOthelloEnemyFactory() {
+		OthelloEnemyFactory factory = new OthelloEnemyFactory();
 		return factory;
 	}
 }
