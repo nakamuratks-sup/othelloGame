@@ -7,6 +7,7 @@ import jp.co.supply_net.game.othello.controller.JsonController;
 //import jp.co.supply_net.game.othello.gameMaster.Convert;
 import jp.co.supply_net.game.othello.gameMaster.BoardCatchRelease;
 import jp.co.supply_net.game.othello.gameMaster.GameMaster;
+import jp.co.supply_net.game.othello.gameMaster.OthelloBoardFactory;
 
 @Component
 public class CreateBean {
@@ -39,4 +40,9 @@ public class CreateBean {
 	// 	BoardCatchRelease bcr = new BoardCatchRelease();
 	// 	return bcr;
 	// }
+
+	public OthelloBoardFactory getOthelloBoardFactory() {
+		OthelloBoardFactory factory = new OthelloBoardFactory();
+		return factory;
+	}
 }
