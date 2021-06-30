@@ -12,4 +12,5 @@ public class JsonSampleDto implements Serializable{
     
     private String bangou;
     private String name;
+    
 }

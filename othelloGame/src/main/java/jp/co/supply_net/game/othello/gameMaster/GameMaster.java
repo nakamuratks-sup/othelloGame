@@ -1,6 +1,12 @@
 package jp.co.supply_net.game.othello.gameMaster;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class GameMaster {
+
+	//@Autowired
+	//private Convert con;
+	//private Board boa;
 
 	/**
 	 * 先攻or後攻
@@ -19,7 +25,7 @@ public class GameMaster {
 	};
 	
 	private int maxpath;
-	private String playerStone;
+	private attack_timing playerStone;
 //	private Bord bord;
 	
 //	public GameMaster() {
@@ -30,20 +36,27 @@ public class GameMaster {
 //	}
 //	playerStone = BLACK ? stone_type.BLACK: stone_type.WHITE;
 
-	public attack_timing setPlayerStone(String playerStone) {
-		this.playerStone = playerStone;
-		attack_timing timing = playerStone.equals("BLACK") ? attack_timing.FIRST: attack_timing.SECOND;
+	public attack_timing setPlayerStone(int playerStone) {
+		//this.playerStone = playerStone;
+		attack_timing timing = playerStone == 1 ? attack_timing.FIRST: attack_timing.SECOND;
 		return timing;
 	}
 
-	public void setMaxpath(int maxpath) {
-		this.maxpath = maxpath;
+	//パス回数設定するときに使う（予定）
+	//public void setMaxpath(int maxpath) {
+	//	this.maxpath = maxpath;
+	//}
+
+	public void gameStart(int maxPath, int playerStone){
+		//Board boa = new Board();
+		this.playerStone = setPlayerStone(playerStone);
+		this.maxpath = maxPath;
+
 	}
+
+
+
 	
-	public void hoge() {
-		int tmp = 0;
-		tmp = maxpath + 5;
-	}
 
 
 //	public void setBord(Bord bord) {
