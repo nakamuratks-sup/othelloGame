@@ -26,9 +26,9 @@ public class JsonController {
     public BoardInfo output1( @RequestBody BoardInfo boardInfo) {
         // クライアントから来たjsonをspringがBoardListに変換して渡される場所
 
-        bcr.setBoardList(boardList);
-        bcr.setPutPusition(putPosition);
-        bcr.setPassInfo(passInfo);
+        bcr.setBoardList(boardInfo.getBoardList());
+        bcr.setPutPusition(boardInfo.getPassInfo());
+        bcr.setPassInfo(boardInfo.getPassInfo());
 
         return boardInfo;
     }
