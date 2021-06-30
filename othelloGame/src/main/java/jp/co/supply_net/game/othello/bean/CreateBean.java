@@ -41,6 +41,7 @@ public class CreateBean {
 	// 	return bcr;
 	// }
 
+	@Bean
 	public OthelloBoardFactory getOthelloBoardFactory() {
 		OthelloBoardFactory factory = new OthelloBoardFactory();
 		return factory;
