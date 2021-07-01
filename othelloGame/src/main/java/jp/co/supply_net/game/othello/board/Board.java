@@ -1,6 +1,9 @@
 package jp.co.supply_net.game.othello.board;
 
-public class Board {
+import jp.co.supply_net.game.othello.gameMaster.OtheloBoard;
+import jp.co.supply_net.game.othello.gameMaster.StoneType;
+
+public class Board implements OtheloBoard{
 
   //ゲーム実行中フラグ
   static boolean game = true;
@@ -390,5 +393,46 @@ public class Board {
     }
   }
 
+  @Override
+  public int getWhiteStone() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int getBlackStone() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int getEmptySpace() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public Boolean isPutEnablePosition(int x, int y, StoneType stoneType) {
+    // TODO Auto-generated method stub
+    return true;
+  }
+
+  @Override
+  public void putStone(int x, int y, StoneType stoneType) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public StoneType[][] getBoardImage() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public int countTurnStone(int x, int y, StoneType stoneType) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 
 }

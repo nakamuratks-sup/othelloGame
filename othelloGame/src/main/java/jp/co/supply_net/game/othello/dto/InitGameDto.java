@@ -8,6 +8,6 @@ import lombok.Setter;
 public class InitGameDto {
     // 最大パス回数
     private int maxPath;
-    // プレーヤの石
-    private String playerStone;
+    // プレーヤが先攻(1)か後攻(2)か
+    private int playerStone;
 }

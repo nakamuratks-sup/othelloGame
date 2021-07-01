@@ -11,9 +11,6 @@ public class Convert {
 	private int convertNumX(String number){
         int num = Integer.parseInt(number);
         int num_x = num % 8 - 1;
-            if (num % 8 - 1 < 0){
-                num_x = num % 8 + 7;
-            }
 
         return num_x;
     }
@@ -21,17 +18,15 @@ public class Convert {
     private int convertNumY(String number){
         int num = Integer.parseInt(number);
         int num_y = num / 8;
-            if (num % 8 = 0){
-                num_y = num / 8 + 1
-            }
 
         return num_y;
     }
 
-    public Grid convertNum(String number) {
+    public Grid convertNum(Masu masu) {
     	Grid grid = new Grid();
-    	grid.setXPosition(this.convertNumX(number));
-    	grid.setYPosition(this.convertNumY(number));
+    	grid.setXPosition(this.convertNumX(masu.getNumber()));
+    	grid.setYPosition(this.convertNumY(masu.getNumber()));
+        grid.setSType(this.changType(masu.getMasuJoho()));
     	return grid;
 	}
 
@@ -43,6 +38,11 @@ public class Convert {
     		list.add(grid);
     	}
     	return list;
+    }
+
+    private StoneType changType(String masuJoho) {
+        // 白黒空の判定する
+        return null;
     }
 
 }
