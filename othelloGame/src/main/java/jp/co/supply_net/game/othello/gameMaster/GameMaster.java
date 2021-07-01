@@ -60,21 +60,23 @@ public class GameMaster implements OthelloGameMaster {
 	public void gameStart(int maxPath, int playerStone){
 		setPlayerStone(playerStone);
 		this.maxpath = maxPath;
+		this.ob = obf.createOtheloBoard();
+		this.oe = oef.createTheOthelloEnemy(ob);
 
 	}
 
 	public int getWhite() {
 		// TODO　暫定対処
-//		int countWhite = ob.getWhiteStone();
-		int countWhite = 15;
+		int countWhite = ob.getWhiteStone();
+//		int countWhite = 15;
 		return countWhite;
 
 	}
 
 	public int getBlack() {
 		// TODO　暫定対処
-//		int countBlack = ob.getBlackStone();
-		int countBlack = 18;
+		int countBlack = ob.getBlackStone();
+//		int countBlack = 18;
 		return countBlack;
 
 	}
@@ -83,10 +85,10 @@ public class GameMaster implements OthelloGameMaster {
 	public String gameFinish() {
 		String kekka = "";
 		// TODO　暫定対処
-//		int countWhite = ob.getWhiteStone();
-//		int countBlack = ob.getBlackStone();
-		int countWhite = 15;
-		int countBlack = 18;
+		int countWhite = ob.getWhiteStone();
+		int countBlack = ob.getBlackStone();
+//		int countWhite = 15;
+//		int countBlack = 18;
 
 		if (countWhite > countBlack) {
 			kekka = "白の勝ちです";

@@ -23,11 +23,11 @@ public class OthelloController {
     //private OtheloBoard ob;
 //    @Autowired
     //private GameMaster gm;
-    
+
     @RequestMapping(path = {"", "/index"}, method = RequestMethod.GET)
     public String firstView(Model model) {
         // ゲーム開始画面表示
-        return "";
+        return "gasesetting";
     }
     @RequestMapping(path = "/init", method = RequestMethod.POST)
     public String initGame(Model model, @ModelAttribute InitGameDto initGameDto) {
@@ -38,11 +38,11 @@ public class OthelloController {
     	int playerStone = initGameDto.getPlayerStone();
 
         ogm.gameStart(maxPath, playerStone);
-    	
+
         /*
          * ゲームのプレイ盤面（フロント）
          */
-        return "demoview";
+        return "playview";
     }
 
     @RequestMapping(path = "/gameresult", method = RequestMethod.GET)
