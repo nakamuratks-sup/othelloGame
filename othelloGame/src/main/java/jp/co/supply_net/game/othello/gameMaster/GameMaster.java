@@ -1,8 +1,11 @@
 package jp.co.supply_net.game.othello.gameMaster;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import jp.co.supply_net.game.othello.board.Grid;
 import jp.co.supply_net.game.othello.dto.BoardInfo;
+import jp.co.supply_net.game.othello.dto.BoardInfo.Masu;
 import jp.co.supply_net.game.othello.enemy.OthelloEnemy;
 import jp.co.supply_net.game.othello.enemy.OthelloEnemyFactory;
 
@@ -21,6 +24,8 @@ public class GameMaster implements OthelloGameMaster {
 	private OthelloEnemy oe;
 	@Autowired
 	private OthelloEnemyFactory oef;
+	
+	private Convert con;
 
 
 	/**
@@ -39,6 +44,8 @@ public class GameMaster implements OthelloGameMaster {
 	private StoneType[][] latestBoard;
 	private StoneType stoneType;
 	private BoardInfo boardInfo;
+	private List<Grid> gridList;
+	private Grid grid;
 
 //	public GameMaster() {
 //		// TODO 自動生成されたコンストラクター・スタブ
@@ -103,17 +110,21 @@ public class GameMaster implements OthelloGameMaster {
 	}
 
 	//オセロの流れ
-	public void gameProgram(AttackTiming playerStone, StoneType stoneType, BoardInfo boardInfo, Grid grid) {
-
+	public void gameProgram(AttackTiming playerStone, BoardInfo boardInfo) {
+		//Gridに変換
+		Masu masu = new BoardInfo().new Masu();
+		this.grid = con.convertNum(masu.getNumber(), masu.getMasuJoho());
+		this.gridList = con.convertGridList(boardInfo.getBoardList());
+		
 		//先攻：人間
 		if (playerStone == AttackTiming.FIRST) {
-			humanOthelloTurn(grid);
+			humanOthelloTurn(grid, gridList);
 
 		}
 
 		//先攻：CPU
 		if (playerStone == AttackTiming.SECOND) {
-			cpuOthelloTurn(grid);
+			cpuOthelloTurn(grid, gridList);
 
 		}
 	}
@@ -122,7 +133,7 @@ public class GameMaster implements OthelloGameMaster {
 	/*
 	 * CPUが先攻の場合の流れ
 	 */
-	private void cpuOthelloTurn(Grid grid) {
+	private void cpuOthelloTurn(Grid grid, List<Grid> gridList) {
 		StoneType stoneType;
 		//stoneTypeにCPUの色（白）設定
 		stoneType = StoneType.BLACK;
@@ -146,7 +157,7 @@ public class GameMaster implements OthelloGameMaster {
 			//stoneTypeに人間の色（黒）設定
 			stoneType = StoneType.WHITE;
 			//フロントから受け取った指定の場所に人間の石を置く
-			ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType);
+			ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType, gridList);
 
 			//ボードから最新の盤面を取得
 			latestBoard = ob.getBoardImage();
@@ -156,13 +167,14 @@ public class GameMaster implements OthelloGameMaster {
 	/*
 	 * 人間が先攻の場合の流れ
 	 */
-	private void humanOthelloTurn(Grid grid) {
+	private void humanOthelloTurn(Grid grid, List<Grid> gridList) {
 
 
 		//stoneTypeに人間の色（黒）設定
 		stoneType = StoneType.BLACK;
+		
 		//フロントから受け取った指定の場所に人間の石を置く
-		ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType);
+		ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType, gridList);
 
 		//ボードから最新の盤面を取得
 		latestBoard = ob.getBoardImage();
@@ -191,17 +203,11 @@ public class GameMaster implements OthelloGameMaster {
 	@Override
 	public void inputBoardInfo(BoardInfo boardInfo) {
 		// TODO 自動生成されたメソッド・スタブ
-		this.boardInfo = boardInfo;
-		/*
-		 * コンバートで、boardInfoを変換する。
-		 */
-		//int xPosition = con.convertNumX(boardInfo.getBoardList());
-		//int yPosition = con.convertNumY(boardInfo.getBoardList());
-
+		
 		/*
 		 * ゲームの流れ
 		 */
-		//gameProgram();
+		gameProgram(playerStone, boardInfo);
 	}
 
 	@Override

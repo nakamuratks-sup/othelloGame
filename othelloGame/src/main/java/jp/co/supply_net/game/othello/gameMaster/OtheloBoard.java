@@ -1,5 +1,9 @@
 package jp.co.supply_net.game.othello.gameMaster;
 
+import java.util.List;
+
+import jp.co.supply_net.game.othello.board.Grid;
+
 public interface OtheloBoard {
     public int getWhiteStone();
     public int getBlackStone();
@@ -9,7 +13,7 @@ public interface OtheloBoard {
     public Boolean isPutEnablePosition(int xPosition, int yPosition, StoneType myStone);
     
     // 指定の場所に石を置く
-    public void putStone(int x, int y, StoneType stoneType);
+    public void putStone(int x, int y, StoneType stoneType, List<Grid> gridList);
 
     // 盤面情報の複製を返す
     public StoneType[][] getBoardImage();
@@ -17,6 +21,6 @@ public interface OtheloBoard {
     // 返せる石の数をカウント
     public int countTurnStone(int x, int y, StoneType stoneType);
     
-    
+   
     
 }

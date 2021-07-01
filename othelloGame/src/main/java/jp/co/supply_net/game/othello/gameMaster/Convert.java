@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.co.supply_net.game.othello.board.Grid;
+import jp.co.supply_net.game.othello.dto.BoardInfo;
 import jp.co.supply_net.game.othello.dto.BoardInfo.Masu;
 
 public class Convert {
+
+	private String masuColor;
 
 	// フロント->サーバ変換
 	private int convertNumX(String number){
@@ -72,7 +75,37 @@ public class Convert {
      * @return
      */
     public Masu convertMasu(Grid grid) {
-    	// Gridのx,yからMasuの通し番号に変換する
-    	return null;
+    	// Gridのx,yからMasuの通し番号と石の色に変換する
+    	Masu masu = new BoardInfo().new Masu();
+    	
+    	int numberX = grid.getXPosition();
+    	int numberY = grid.getYPosition();
+    	
+    	//通し番号に変換
+    	int num = numberY * 8 + numberX + 1;
+    	String toshiNum = Integer.valueOf(num).toString();
+    	
+    	masu.setNumber(toshiNum);
+    	masu.setMasuJoho(this.changeTypetoMasu(grid.getSType()));
+
+    	return masu;
+    }
+    
+    /*
+     * enum型をmasuJohoに変換
+     */
+    private String changeTypetoMasu(StoneType stoneColor) {
+        // 白黒空の判定する
+    	if (stoneColor == StoneType.BLACK) {
+    		masuColor.equals("黒");
+    	}
+    	if (stoneColor == StoneType.WHITE) {
+    		masuColor.equals("白");
+    	}
+    	if (stoneColor == StoneType.EMPTY) {
+    		masuColor.equals("空");
+    	}
+    		
+        return masuColor;
     }
 }
