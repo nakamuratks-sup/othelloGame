@@ -22,6 +22,17 @@ $(".cell").on("click", function () {
 var myNameSpace = {};
 myNameSpace.preElement = null;
 myNameSpace.rcvdata = null;
+myNameSpace.mycolor = null;
+
+//盤面の二次元配列情報
+var board_ar = new Array(8);
+for(var y = 0; y < ban_ar.length; y++){
+    board_ar[y] = new Array(8);
+    for(var x = 0; x < ban_ar.length; x++){
+        var id = x + y * 8;
+        board_ar[y][x] = document.getElementById(id).textContent
+    }
+}
 
 // マスをクリックしたときの処理
 function clickMe(e) {

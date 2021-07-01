@@ -41,10 +41,13 @@ public class OthelloController {
         return "demoview";
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
+    @RequestMapping(path = "/gameresult", method = RequestMethod.GET)
     public String resultView(Model model) {
         // ゲーム管理から石の数取得し勝敗判定
         // ゲーム結果画面表示
-        return "";
+        model.addAttribute("whitenum", "12");
+        model.addAttribute("blacknum", "18");
+        model.addAttribute("gameresult", "黒の勝ちです。");
+        return "result";
     }
 }
