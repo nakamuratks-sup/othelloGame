@@ -27,6 +27,10 @@ public class GameMaster {
 	private int maxpath;
 	private AttackTiming playerStone;
 //	private Bord bord;
+	private String passInfo;
+	private Grid enemyGrid;
+	private StoneType[][] latestBoard;
+	private StoneType stoneType;
 	
 //	public GameMaster() {
 //		// TODO 自動生成されたコンストラクター・スタブ
@@ -47,38 +51,100 @@ public class GameMaster {
 	//	this.maxpath = maxpath;
 	//}
 	
-	public void gameStart(int maxPath, int playerStone, BoardInfo boardInfo, Grid grid){
+	public void gameStart(int maxPath, int playerStone, StoneType stoneType, BoardInfo boardInfo, Grid grid){
 		//Board boa = new Board();
 		this.playerStone = setPlayerStone(playerStone);
 		this.maxpath = maxPath;
 		
-		//東ob.isPutEnablePosition(grid.getXPosition(), grid.getYPosition(), boardInfo.getBoardList());
+		ob.isPutEnablePosition(grid.getXPosition(), grid.getYPosition(), stoneType);
 
 	}
 	
 	//オセロの流れ
-	public void gameProgram(AttackTiming timing, BoardInfo boardInfo) {
+	public void gameProgram(int playerStone, AttackTiming timing, StoneType stoneType, BoardInfo boardInfo, Grid grid) {
+		
+		setPlayerStone(playerStone);
+		
 		//先攻：人間
 		if (timing == AttackTiming.FIRST) {
-			//フロントから受け取った指定の場所に人間の石を置く
-			//東ob.putStone(boardInfo.getBoardList(), boardInfo.getPutPosition());
+			humanOthelloTurn(grid);
+			
 			
 			
 		}
+		
 		//先攻：CPU
 		if (timing == AttackTiming.SECOND) {
-			//CPUが石を置く
-			oe.enemyTurn();
-			//CPUが置いた情報を取得
-			Grid enemyGrid = oe.getLastSetGrid();
-			//ボードから最新の盤面を取得
-			//東List<Masu> latestBoard = ob.getBoardImage();
+			cpuOthelloTurn(grid);
+			
 			
 			/* 
 			 * latestBoard 
 			 */
 			
 		}
+	}
+
+	private void cpuOthelloTurn(Grid grid) {
+		StoneType stoneType;
+		//stoneTypeに人間の色（白）設定
+		stoneType = StoneType.WHITE;
+		//CPUが石を置く
+		oe.enemyTurn(stoneType);
+		//CPUが置いた情報を取得
+		enemyGrid = oe.getLastSetGrid();
+			//CPUが置いた場所が、nullの場合パスを意味する
+			if (enemyGrid == null) {
+				this.passInfo = "pass";
+			} else {
+				this.passInfo = null;
+			}
+			
+		//ボードから最新の盤面を取得
+		latestBoard = ob.getBoardImage();
+		
+		/*
+		 * 人間のターン
+		 */
+			//stoneTypeに人間の色（黒）設定
+			stoneType = StoneType.BLACK;
+			//フロントから受け取った指定の場所に人間の石を置く
+			ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType);
+		
+			//ボードから最新の盤面を取得
+			latestBoard = ob.getBoardImage();
+	}
+
+	private void humanOthelloTurn(Grid grid) {
+
+		 
+		//stoneTypeに人間の色（黒）設定
+		stoneType = StoneType.BLACK;
+		//フロントから受け取った指定の場所に人間の石を置く
+		ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType);
+		
+		//ボードから最新の盤面を取得
+		latestBoard = ob.getBoardImage();
+		
+		/*
+		 * CPUのターン
+		 */
+			//stoneTypeにCPUの色（白）設定
+			stoneType = StoneType.WHITE;
+			//CPUが石を置く
+			oe.enemyTurn(stoneType);
+			//CPUが置いた情報を取得
+			enemyGrid = oe.getLastSetGrid();
+				//CPUが置いた場所が、nullの場合パスを意味する
+				if (enemyGrid == null) {
+					this.passInfo = "pass";
+				} else {
+					this.passInfo = null;
+				}
+			
+			//ボードから最新の盤面を取得
+			latestBoard = ob.getBoardImage();
+			
 	}
 	
 	

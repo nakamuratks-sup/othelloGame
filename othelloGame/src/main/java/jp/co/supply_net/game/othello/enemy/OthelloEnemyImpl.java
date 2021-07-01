@@ -3,8 +3,6 @@ package jp.co.supply_net.game.othello.enemy;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import jp.co.supply_net.game.othello.board.Grid;
 import jp.co.supply_net.game.othello.gameMaster.OtheloBoard;
 import jp.co.supply_net.game.othello.gameMaster.StoneType;
@@ -21,7 +19,8 @@ public class OthelloEnemyImpl implements OthelloEnemy {
 	}
 
 	@Override
-	public void enemyTurn() {
+	public void enemyTurn(StoneType stoneType) {
+		myStone = stoneType;
 		// ボードから空きのマス情報を取得
 		// ボードへ指定マスから返せる石の数を取得
 		List<Grid> list = serchPutEnableGrid(this.getEmptyGrid());
