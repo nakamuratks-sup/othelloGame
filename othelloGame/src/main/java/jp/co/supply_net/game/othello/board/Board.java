@@ -428,10 +428,10 @@ public class Board implements OtheloBoard{
     if (int x, int y, StoneType stoneType) {
 
       //上確認
-      if (int y > 1){
+      if (y > 1){
 
         //となり
-        String next = board[int y - 1][int x];
+        String next = board[y - 1][x];
 
           //となりが異なる場合
           if (next.equals(rev_stone)) {
@@ -439,7 +439,7 @@ public class Board implements OtheloBoard{
             //さらにそのとなりから確認
             for (int i = 2; true; i++){
 
-              if (int y - i < 0 || board[int y - i][int x].equals(EMPTY)){
+              if (y - i < 0 || board[y - i][x].equals(EMPTY)){
                 //石がない場合終了
                 break;
               }
@@ -447,13 +447,13 @@ public class Board implements OtheloBoard{
           }
       }
     
-      or
+      or;
 
       //右上確認
-      if (int y > 1 && int x < 6) {
+      if (y > 1 && x < 6) {
 
         //となり
-        String next = board[int y - 1][int x + 1];
+        String next = board[y - 1][x + 1];
 
         //となりが異なる場合
         if (next.equals(rev_stone)) {
@@ -461,7 +461,7 @@ public class Board implements OtheloBoard{
           //さらにそのとなりから確認
           for (int i = 2; true; i++) {
 
-            if (int x + i > 7 || int y - i < 0 || board[int y - i][int x + i].equals(EMPTY)) {
+            if (x + i > 7 || y - i < 0 || board[y - i][x + i].equals(EMPTY)) {
               //石がない場合終了
               break;
             }
@@ -469,13 +469,13 @@ public class Board implements OtheloBoard{
         }
       }
 
-      or
+      or;
 
       //右確認
-      if (int x > 6){
+      if (x > 6){
       
         // となり
-        String next = board[int y][int x + 1];
+        String next = board[y][x + 1];
 
         // となりが異なる場合
         if (next.equals(rev_stone)) {
@@ -483,7 +483,7 @@ public class Board implements OtheloBoard{
           // さらにそのとなりから順に確認
           for (int i = 2; true; i++) {
 
-            if (int x + i > 7 || board[int y][int x + i].equals(EMPTY)) {
+            if (x + i > 7 || board[y][x + i].equals(EMPTY)) {
               // 石がない場合終了
               break;
             }
@@ -491,13 +491,13 @@ public class Board implements OtheloBoard{
         }
       }
 
-      or
+      or;
 
       //右下確認
-      if (int y < 6 && int x < 6) {
+      if (y < 6 && x < 6) {
 
         // となり
-        String next = board[int y + 1][int x + 1];
+        String next = board[y + 1][x + 1];
 
         // となりが異なる場合
         if (next.equals(rev_stone)) {
@@ -505,7 +505,7 @@ public class Board implements OtheloBoard{
           // さらにそのとなりから順に確認
           for (int i = 2; true; i++) {
 
-            if (int x + i > 7 || int y + i > 7 || board[int y + i][int x + i].equals(EMPTY)) {
+            if (x + i > 7 || y + i > 7 || board[y + i][x + i].equals(EMPTY)) {
               // 石がない場合終了
               break;
             }
@@ -513,13 +513,13 @@ public class Board implements OtheloBoard{
         }
       }
 
-      or
+      or;
 
       //下確認
-      if (int y < 6) {
+      if (y < 6) {
 
         // となり
-        String next = board[int y + 1][int x];
+        String next = board[y + 1][x];
 
         // となりが異なる場合
         if (next.equals(rev_stone)) {
@@ -527,7 +527,7 @@ public class Board implements OtheloBoard{
           // さらにそのとなりから順に確認
           for (int i = 2; true; i++) {
 
-            if (int y + i > 7 || board[int y + i][int x].equals(EMPTY)) {
+            if (y + i > 7 || board[y + i][x].equals(EMPTY)) {
               // 石がない場合終了
               break;
             }
@@ -535,13 +535,13 @@ public class Board implements OtheloBoard{
         }
       }
 
-      or
+      or;
 
       //左下確認
-      if (int y < 6 && int x > 1) {
+      if (y < 6 && x > 1) {
 
         // となりの駒
-        String next = board[int y + 1][int x - 1];
+        String next = board[y + 1][x - 1];
 
         // となりが異なる場合
         if (next.equals(rev_stone)) {
@@ -549,7 +549,7 @@ public class Board implements OtheloBoard{
           // さらにそのとなりから順に確認
           for (int i = 2; true; i++) {
 
-            if (int x - i < 0 || int y + i > 7 || board[int y + i][int x - i].equals(EMPTY)) {
+            if (x - i < 0 || y + i > 7 || board[y + i][x - i].equals(EMPTY)) {
               // 石がない場合終了
               break;
             }
@@ -557,13 +557,13 @@ public class Board implements OtheloBoard{
         }
       }
 
-      or
+      or;
 
       //左確認
-      if (int x > 1) {
+      if (x > 1) {
 
         // となり
-        String next = board[int y][int x - 1];
+        String next = board[y][x - 1];
 
         // となりが異なる場合
         if (next.equals(rev_stone)) {
@@ -571,7 +571,7 @@ public class Board implements OtheloBoard{
           // さらにそのとなりから順に確認
           for (int i = 2; true; i++) {
 
-            if (int x - i < 0 || board[int y][int x - i].equals(EMPTY)) {
+            if (x - i < 0 || board[y][x - i].equals(EMPTY)) {
               // 石がない場合終了
               break;
             }
@@ -579,13 +579,13 @@ public class Board implements OtheloBoard{
         }
       }
 
-      or
+      or;
 
       //左上確認
-      if (int y > 1 && int x > 1) {
+      if (y > 1 && x > 1) {
 
         // となり
-        String next = board[int y - 1][int x - 1];
+        String next = board[y - 1][x - 1];
 
         // となりが異なる場合
         if (next.equals(rev_stone)) {
@@ -593,14 +593,14 @@ public class Board implements OtheloBoard{
           // さらにそのとなりから順に確認
           for (int i = 2; true; i++) {
 
-            if (int x - i < 0 || int y - i < 0 || board[int y - i][int x - i].equals(EMPTY)) {
+            if (x - i < 0 || y - i < 0 || board[y - i][x - i].equals(EMPTY)) {
               // 石がない場合終了
               break;
             }
           }
         }
       }
-    return true
+    return true;
     }
   }
 
