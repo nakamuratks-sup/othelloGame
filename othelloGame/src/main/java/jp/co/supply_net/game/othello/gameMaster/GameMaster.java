@@ -63,13 +63,9 @@ public class GameMaster {
 	//オセロの流れ
 	public void gameProgram(int playerStone, AttackTiming timing, StoneType stoneType, BoardInfo boardInfo, Grid grid) {
 		
-		setPlayerStone(playerStone);
-		
 		//先攻：人間
 		if (timing == AttackTiming.FIRST) {
 			humanOthelloTurn(grid);
-			
-			
 			
 		}
 		
@@ -77,18 +73,17 @@ public class GameMaster {
 		if (timing == AttackTiming.SECOND) {
 			cpuOthelloTurn(grid);
 			
-			
-			/* 
-			 * latestBoard 
-			 */
-			
 		}
 	}
+	
 
+	/*
+	 * CPUが先攻の場合の流れ
+	 */
 	private void cpuOthelloTurn(Grid grid) {
 		StoneType stoneType;
-		//stoneTypeに人間の色（白）設定
-		stoneType = StoneType.WHITE;
+		//stoneTypeにCPUの色（白）設定
+		stoneType = StoneType.BLACK;
 		//CPUが石を置く
 		oe.enemyTurn(stoneType);
 		//CPUが置いた情報を取得
@@ -107,7 +102,7 @@ public class GameMaster {
 		 * 人間のターン
 		 */
 			//stoneTypeに人間の色（黒）設定
-			stoneType = StoneType.BLACK;
+			stoneType = StoneType.WHITE;
 			//フロントから受け取った指定の場所に人間の石を置く
 			ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType);
 		
@@ -115,6 +110,10 @@ public class GameMaster {
 			latestBoard = ob.getBoardImage();
 	}
 
+	
+	/*
+	 * 人間が先攻の場合
+	 */
 	private void humanOthelloTurn(Grid grid) {
 
 		 
