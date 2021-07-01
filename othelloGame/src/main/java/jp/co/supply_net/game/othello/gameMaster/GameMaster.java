@@ -62,7 +62,11 @@ public class GameMaster implements OthelloGameMaster {
 	//結果
 	public void gameFinish() {
 		int countEnemy = ob.countEnemyStone();
-		int countHuman = ob.countHumanStone()
+		int countHuman = ob.countHumanStone();
+		
+		if (countEnemy > countHuman) {
+			
+		}
 	}
 	
 	//オセロの流れ
