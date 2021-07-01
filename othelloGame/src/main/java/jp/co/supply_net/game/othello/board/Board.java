@@ -396,12 +396,22 @@ public class Board implements OtheloBoard{
   @Override
   public int getWhiteStone() {
     // TODO Auto-generated method stub
+    //空いている座標があるか、各駒数の集計
+    if (s.equals(EMPTY)) {
+      existempty = true;
+    } else if (s.equals(BLACK)) {
+      cnt_black++;
+    } else if (s.equals(WHITE)) {
+      cnt_white++;
+    }
     return 0;
   }
 
   @Override
   public int getBlackStone() {
     // TODO Auto-generated method stub
+    //黒い駒の数集計用
+    int cnt_black = 0;
     return 0;
   }
 
@@ -414,7 +424,184 @@ public class Board implements OtheloBoard{
   @Override
   public Boolean isPutEnablePosition(int x, int y, StoneType stoneType) {
     // TODO Auto-generated method stub
-    return true;
+    
+    if (int x, int y, StoneType stoneType) {
+
+      //上確認
+      if (int y > 1){
+
+        //となり
+        String next = board[int y - 1][int x];
+
+          //となりが異なる場合
+          if (next.equals(rev_stone)) {
+
+            //さらにそのとなりから確認
+            for (int i = 2; true; i++){
+
+              if (int y - i < 0 || board[int y - i][int x].equals(EMPTY)){
+                //石がない場合終了
+                break;
+              }
+            }
+          }
+      }
+    
+      or
+
+      //右上確認
+      if (int y > 1 && int x < 6) {
+
+        //となり
+        String next = board[int y - 1][int x + 1];
+
+        //となりが異なる場合
+        if (next.equals(rev_stone)) {
+
+          //さらにそのとなりから確認
+          for (int i = 2; true; i++) {
+
+            if (int x + i > 7 || int y - i < 0 || board[int y - i][int x + i].equals(EMPTY)) {
+              //石がない場合終了
+              break;
+            }
+          }
+        }
+      }
+
+      or
+
+      //右確認
+      if (int x > 6){
+      
+        // となり
+        String next = board[int y][int x + 1];
+
+        // となりが異なる場合
+        if (next.equals(rev_stone)) {
+
+          // さらにそのとなりから順に確認
+          for (int i = 2; true; i++) {
+
+            if (int x + i > 7 || board[int y][int x + i].equals(EMPTY)) {
+              // 石がない場合終了
+              break;
+            }
+          }
+        }
+      }
+
+      or
+
+      //右下確認
+      if (int y < 6 && int x < 6) {
+
+        // となり
+        String next = board[int y + 1][int x + 1];
+
+        // となりが異なる場合
+        if (next.equals(rev_stone)) {
+
+          // さらにそのとなりから順に確認
+          for (int i = 2; true; i++) {
+
+            if (int x + i > 7 || int y + i > 7 || board[int y + i][int x + i].equals(EMPTY)) {
+              // 石がない場合終了
+              break;
+            }
+          }
+        }
+      }
+
+      or
+
+      //下確認
+      if (int y < 6) {
+
+        // となり
+        String next = board[int y + 1][int x];
+
+        // となりが異なる場合
+        if (next.equals(rev_stone)) {
+
+          // さらにそのとなりから順に確認
+          for (int i = 2; true; i++) {
+
+            if (int y + i > 7 || board[int y + i][int x].equals(EMPTY)) {
+              // 石がない場合終了
+              break;
+            }
+          }
+        }
+      }
+
+      or
+
+      //左下確認
+      if (int y < 6 && int x > 1) {
+
+        // となりの駒
+        String next = board[int y + 1][int x - 1];
+
+        // となりが異なる場合
+        if (next.equals(rev_stone)) {
+
+          // さらにそのとなりから順に確認
+          for (int i = 2; true; i++) {
+
+            if (int x - i < 0 || int y + i > 7 || board[int y + i][int x - i].equals(EMPTY)) {
+              // 石がない場合終了
+              break;
+            }
+          }
+        }
+      }
+
+      or
+
+      //左確認
+      if (int x > 1) {
+
+        // となり
+        String next = board[int y][int x - 1];
+
+        // となりが異なる場合
+        if (next.equals(rev_stone)) {
+
+          // さらにそのとなりから順に確認
+          for (int i = 2; true; i++) {
+
+            if (int x - i < 0 || board[int y][int x - i].equals(EMPTY)) {
+              // 石がない場合終了
+              break;
+            }
+          }
+        }
+      }
+
+      or
+
+      //左上確認
+      if (int y > 1 && int x > 1) {
+
+        // となり
+        String next = board[int y - 1][int x - 1];
+
+        // となりが異なる場合
+        if (next.equals(rev_stone)) {
+
+          // さらにそのとなりから順に確認
+          for (int i = 2; true; i++) {
+
+            if (int x - i < 0 || int y - i < 0 || board[int y - i][int x - i].equals(EMPTY)) {
+              // 石がない場合終了
+              break;
+            }
+          }
+        }
+      }
+    return true
+    }
   }
 
   @Override
