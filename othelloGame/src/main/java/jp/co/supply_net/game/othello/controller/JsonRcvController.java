@@ -4,18 +4,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.supply_net.game.othello.dto.DemoDto;
 import jp.co.supply_net.game.othello.dto.JsonMapSampleDto;
 import jp.co.supply_net.game.othello.dto.JsonSampleDto;
 
-@RestController
-@RequestMapping(path="/sample")
+//@RestController
+//@RequestMapping(path="/sample2")
 public class JsonRcvController {
     private static final Logger log = LoggerFactory.getLogger(JsonRcvController.class);
     
@@ -47,8 +43,8 @@ public class JsonRcvController {
         return jsonString;
     }
 
-    @PostMapping(path="/json")
-    @ResponseBody
+//    @PostMapping(path="/json")
+//    @ResponseBody
     public JsonMapSampleDto output1( @RequestBody JsonMapSampleDto jsonMapDto) {
         // クライアントから来たjsonをspringがJsonSampleDtoに変換して渡される場所
 

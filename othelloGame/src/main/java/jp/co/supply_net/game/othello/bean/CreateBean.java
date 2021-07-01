@@ -7,12 +7,13 @@ import jp.co.supply_net.game.othello.controller.JsonController;
 import jp.co.supply_net.game.othello.enemy.OthelloEnemyFactory;
 import jp.co.supply_net.game.othello.gameMaster.GameMaster;
 import jp.co.supply_net.game.othello.gameMaster.OthelloBoardFactory;
+import jp.co.supply_net.game.othello.gameMaster.OthelloGameMaster;
 
 @Component
 public class CreateBean {
 
 	@Bean
-	public GameMaster getGameMaster() {
+	public OthelloGameMaster getGameMaster() {
 		GameMaster gm = new GameMaster();
 //		ボードオブジェクトの設定
 //		gm.setBord(new Bord());
@@ -28,11 +29,11 @@ public class CreateBean {
 		return jc;
 	}
 
-	// @Bean
-	// public Convert getConvert() {
-	// 	Convert con = new Convert();
-	// 	return con;
-	// }
+//	@Bean
+//	public Convert getConvert() {
+//		Convert con = new Convert();
+//	 	return con;
+//	}
 
 	// @Bean
 	// Public BoardCatchRelease getBoardCatchRelease() {

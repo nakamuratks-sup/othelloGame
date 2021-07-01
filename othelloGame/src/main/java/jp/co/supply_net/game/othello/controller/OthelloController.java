@@ -21,9 +21,9 @@ public class OthelloController {
 
     @Autowired
     private OthelloGameMaster ogm;
-    @Autowired
+    //@Autowired
     private OtheloBoard ob;
-    @Autowired
+//    @Autowired
     private GameMaster gm;
     
     @RequestMapping(path = {"", "/index"}, method = RequestMethod.GET)
@@ -53,7 +53,7 @@ public class OthelloController {
         // ゲーム結果画面表示
         model.addAttribute("whitenum", ob.getWhiteStone());
         model.addAttribute("blacknum", ob.getBlackStone());
-        model.addAttribute("gameresult",gm.gameFinish());
+        model.addAttribute("gameresult",((GameMaster)gm).gameFinish());
         return "result";
     }
 }

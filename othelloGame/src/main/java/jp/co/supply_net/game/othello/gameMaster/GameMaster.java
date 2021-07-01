@@ -4,19 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import jp.co.supply_net.game.othello.board.Grid;
 import jp.co.supply_net.game.othello.dto.BoardInfo;
 import jp.co.supply_net.game.othello.enemy.OthelloEnemy;
+import jp.co.supply_net.game.othello.enemy.OthelloEnemyFactory;
 
 
 public class GameMaster implements OthelloGameMaster {
 
-	@Autowired
-	private Convert con;
+//	@Autowired
+//	private Convert con;
 	//private Board boa;
-	@Autowired
-	private BoardCatchRelease bcr;
-	@Autowired
+	
+	
 	private OtheloBoard ob;
 	@Autowired
+	private OthelloBoardFactory obf;
+	
 	private OthelloEnemy oe;
+	@Autowired
+	private OthelloEnemyFactory oef;
 	
 	
 	/**

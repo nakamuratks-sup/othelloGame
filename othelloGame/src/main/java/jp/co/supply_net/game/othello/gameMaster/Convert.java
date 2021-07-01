@@ -34,7 +34,7 @@ public class Convert {
     	List<Grid> list = new ArrayList<>();
 
     	for(Masu masu: boardlist) {
-    		Grid grid = this.convertNum(masu.getNumber());
+    		Grid grid = this.convertNum(masu);
     		list.add(grid);
     	}
     	return list;

@@ -396,13 +396,13 @@ public class Board implements OtheloBoard{
   @Override
   public int getWhiteStone() {
     // TODO Auto-generated method stub
-    return 0;
+    return 10;
   }
 
   @Override
   public int getBlackStone() {
     // TODO Auto-generated method stub
-    return 0;
+    return 54;
   }
 
   @Override
