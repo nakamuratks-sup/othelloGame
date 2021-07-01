@@ -128,4 +128,13 @@ public class Convert {
   	    }
   	    return list;
   	}
+  	
+//  //List<Grid>を二次元配列に変換
+//  	public StoneType[][] listToHairetsu(List<Grid> gridList) {
+//  		StoneType[][] hairetsu = new StoneType[64][];
+//  	    for (Grid gl : gridList) {
+//  	        hairetsu.add(gl);
+//  	    }
+//  	    return hairetsu;
+//  	}
 }
