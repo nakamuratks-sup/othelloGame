@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.supply_net.game.othello.dto.InitGameDto;
-import jp.co.supply_net.game.othello.gameMaster.GameMaster;
+import jp.co.supply_net.game.othello.gameMaster.OthelloGameMaster;
 
 @Controller
 @RequestMapping(path = "/othello")
@@ -18,7 +18,7 @@ public class OthelloController {
     private static final Logger log = LoggerFactory.getLogger(OthelloController.class);
 
     @Autowired
-    private GameMaster gm;
+    private OthelloGameMaster ogm;
     
     @RequestMapping(path = {"", "/index"}, method = RequestMethod.GET)
     public String firstView(Model model) {
@@ -32,11 +32,12 @@ public class OthelloController {
         // ゲーム画面表示
     	int maxPath = initGameDto.getMaxPath();
     	int playerStone = initGameDto.getPlayerStone();
-//    	new GameMaster(maxPath);
-    	//gm.setMaxpath(maxPath);
-    	//gm.setPlayerStone(playerStone);
-        //東gm.gameStart(maxPath, playerStone);
+
+        ogm.gameStart(maxPath, playerStone);
     	
+        /*
+         * ゲームのプレイ盤面（フロント）
+         */
         return "demoview";
     }
 

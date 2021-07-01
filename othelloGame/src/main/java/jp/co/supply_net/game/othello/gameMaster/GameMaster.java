@@ -6,14 +6,18 @@ import jp.co.supply_net.game.othello.dto.BoardInfo;
 import jp.co.supply_net.game.othello.enemy.OthelloEnemy;
 
 
-public class GameMaster {
+public class GameMaster implements OthelloGameMaster {
 
 	@Autowired
-	//private Convert con;
+	private Convert con;
 	//private Board boa;
+	@Autowired
 	private BoardCatchRelease bcr;
+	@Autowired
 	private OtheloBoard ob;
+	@Autowired
 	private OthelloEnemy oe;
+	
 	
 	/**
 	 * 先攻or後攻
@@ -26,11 +30,11 @@ public class GameMaster {
 	
 	private int maxpath;
 	private AttackTiming playerStone;
-//	private Bord bord;
 	private String passInfo;
 	private Grid enemyGrid;
 	private StoneType[][] latestBoard;
 	private StoneType stoneType;
+	private BoardInfo boardInfo;
 	
 //	public GameMaster() {
 //		// TODO 自動生成されたコンストラクター・スタブ
@@ -40,24 +44,18 @@ public class GameMaster {
 //	}
 //	playerStone = BLACK ? stone_type.BLACK: stone_type.WHITE;
 
-	public AttackTiming setPlayerStone(int playerStone) {
+	public void setPlayerStone(int playerStone) {
 		//this.playerStone = playerStone;
-		AttackTiming timing = playerStone == 1 ? AttackTiming.FIRST: AttackTiming.SECOND;
-		return timing;
+		this.playerStone = playerStone == 1 ? AttackTiming.FIRST: AttackTiming.SECOND;
+		
 	}
 
-	//パス回数設定するときに使う（予定）
-	//public void setMaxpath(int maxpath) {
-	//	this.maxpath = maxpath;
-	//}
 	
-	public void gameStart(int maxPath, int playerStone, StoneType stoneType, BoardInfo boardInfo, Grid grid){
-		//Board boa = new Board();
-		this.playerStone = setPlayerStone(playerStone);
+	@Override
+	public void gameStart(int maxPath, int playerStone){
+		setPlayerStone(playerStone);
 		this.maxpath = maxPath;
 		
-		ob.isPutEnablePosition(grid.getXPosition(), grid.getYPosition(), stoneType);
-
 	}
 	
 	//オセロの流れ
@@ -112,7 +110,7 @@ public class GameMaster {
 
 	
 	/*
-	 * 人間が先攻の場合
+	 * 人間が先攻の場合の流れ
 	 */
 	private void humanOthelloTurn(Grid grid) {
 
@@ -145,17 +143,23 @@ public class GameMaster {
 			latestBoard = ob.getBoardImage();
 			
 	}
+
+	@Override
+	public void inputBoardInfo(BoardInfo boardInfo) {
+		// TODO 自動生成されたメソッド・スタブ
+		this.boardInfo = boardInfo;
+		//int xPosition = con.convertNumX(boardInfo.getBoardList());
+		//int yPosition = con.convertNumY(boardInfo.getBoardList());
+		
+		
+	}
+
+	@Override
+	public BoardInfo outputBoardInfo() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 	
-	
-	
 
-
-
-	
-
-
-//	public void setBord(Bord bord) {
-//		this.bord = bord;
-//	}
 	
 }
