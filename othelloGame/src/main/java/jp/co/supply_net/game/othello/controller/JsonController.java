@@ -27,8 +27,8 @@ public class JsonController {
         // クライアントから来たjsonをspringがBoardListに変換して渡される場所
 
         
-        /*GMに
-         * ボードインフォの値を渡す
+        /*
+         * ゲーム管理にBoardInfoの値を渡す
          */
         ogm.inputBoardInfo(boardInfo);
         

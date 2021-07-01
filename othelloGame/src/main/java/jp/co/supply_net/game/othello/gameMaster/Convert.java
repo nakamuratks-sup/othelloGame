@@ -4,24 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.co.supply_net.game.othello.board.Grid;
+import jp.co.supply_net.game.othello.dto.BoardInfo;
 import jp.co.supply_net.game.othello.dto.BoardInfo.Masu;
 
 public class Convert {
 
 	private StoneType stoneColor;
+	private String masuColor;
 
 
 	private int convertNumX(String number){
         int num = Integer.parseInt(number);
         int num_x = num % 8 - 1;
-        
+        if (num_x == 0) {
+        	num_x = 7;
+        }
 
         return num_x;
     }
 
     private int convertNumY(String number){
-        int num = Integer.parseInt(number);
-        int num_y = num / 8;
+        int num_y;
+    	int num = Integer.parseInt(number);
+        int num_x = num % 8 - 1;
+        int numY = num / 8;
+        if (num_x == 0) {
+        	num_y = numY - 1;
+        }
+        else
+        {
+        	num_y = numY;
+        }
 
         return num_y;
     }
@@ -70,59 +83,62 @@ public class Convert {
     
     
     
-    private int convertNumXtoMasu(int number){
-        int num_x = number % 8 - 1;
-        
+    private String convertNumber(int numberX, int numberY){
+    	int num = numberY * 8 + numberX + 1;
+    	String toshiNum = Integer.valueOf(num).toString();
 
-        return num_x;
+        return toshiNum;
     }
 
-    private int convertNumYtoMasu(int number){
-        int num_y = number / 8;
-
-        return num_y;
-    }
     
     /*
      * GridをMasuに変換（1マス単位）
      */
-    public Grid convertMasuNum(Grid grid) {
-    	Grid grid2 = new Grid();
-    	grid.setXPosition(this.convertNumXtoMasu(grid.getXPosition()));
-    	grid.setYPosition(this.convertNumYtoMasu(grid.getYPosition()));
-        grid.setSType(this.changeTypetoMasu(grid.getSType()));
-    	return grid;
+    public Masu convertMasuNum(Grid grid) {
+    	Masu masu = new BoardInfo().new Masu();
+    	masu.setNumber(this.convertNumber(grid.getXPosition(), grid.getYPosition()));
+        masu.setMasuJoho(this.changeTypetoMasu(grid.getSType()));
+    	return masu;
 	}
 
     /*
      * GridをList<Masu>に変換
      */
-    public List<Grid> convertMasuList(List<Masu> boardlist){
-    	List<Grid> list = new ArrayList<>();
+    public List<Masu> convertMasuList(List<Grid> boardlist){
+    	List<Masu> list = new ArrayList<>();
 
-    	for(Masu masu: boardlist) {
-    		Grid grid = this.convertNum(masu);
-    		list.add(grid);
+    	for(Grid grid: boardlist) {
+    		Masu masu = this.convertNumber(masu, masu);
+    		list.add(masu);
     	}
     	return list;
     }
     
     /*
+     * passInfoを設定
+     */
+    public String settingPassInfo(String passInfo) {
+    	BoardInfo bi = new BoardInfo();
+    	bi.setPassInfo = passInfo;
+    	return bi;
+	}
+    
+    /*
      * enum型をmasuJohoに変換
      */
-    private StoneType changeTypetoMasu(StoneType stoneColor) {
+    private String changeTypetoMasu(StoneType stoneColor) {
         // 白黒空の判定する
     	if (stoneColor == StoneType.BLACK) {
-    		stoneColor.equals("黒");
+    		masuColor.equals("黒");
     	}
     	if (stoneColor == StoneType.WHITE) {
-    		stoneColor.equals("白");
+    		masuColor.equals("白");
     	}
     	if (stoneColor == StoneType.EMPTY) {
-    		stoneColor.equals("空");
+    		masuColor.equals("空");
     	}
     		
-        return stoneColor;
+        return masuColor;
     }
     
     

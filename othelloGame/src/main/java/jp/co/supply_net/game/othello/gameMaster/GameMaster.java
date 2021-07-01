@@ -52,9 +52,15 @@ public class GameMaster implements OthelloGameMaster {
 
 	
 	@Override
+	//ゲーム開始
 	public void gameStart(int maxPath, int playerStone){
 		setPlayerStone(playerStone);
 		this.maxpath = maxPath;
+		
+	}
+	
+	//結果
+	public void gameFinish() {
 		
 	}
 	
@@ -148,10 +154,16 @@ public class GameMaster implements OthelloGameMaster {
 	public void inputBoardInfo(BoardInfo boardInfo) {
 		// TODO 自動生成されたメソッド・スタブ
 		this.boardInfo = boardInfo;
+		/*
+		 * コンバートで、boardInfoを変換する。
+		 */
 		//int xPosition = con.convertNumX(boardInfo.getBoardList());
 		//int yPosition = con.convertNumY(boardInfo.getBoardList());
 		
-		
+		/*
+		 * ゲームの流れ
+		 */
+		//gameProgram();
 	}
 
 	@Override
