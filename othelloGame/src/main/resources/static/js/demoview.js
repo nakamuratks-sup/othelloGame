@@ -1,69 +1,24 @@
 // 要素 の 取得とイベントの追加
-document. getElementById('0').addEventListener( 'click', clickMe, false);
-document. getElementById('1').addEventListener( 'click', clickMe, false);
-document. getElementById('2').addEventListener( 'click', clickMe, false);
-document. getElementById('3').addEventListener( 'click', clickMe, false);
-document. getElementById('4').addEventListener( 'click', clickMe, false);
-document. getElementById('5').addEventListener( 'click', clickMe, false);
-document. getElementById('6').addEventListener( 'click', clickMe, false);
-document. getElementById('7').addEventListener( 'click', clickMe, false);
-document. getElementById('8').addEventListener( 'click', clickMe, false);
-document. getElementById('9').addEventListener( 'click', clickMe, false);
-document. getElementById('10').addEventListener( 'click', clickMe, false);
-document. getElementById('11').addEventListener( 'click', clickMe, false);
-document. getElementById('12').addEventListener( 'click', clickMe, false);
-document. getElementById('13').addEventListener( 'click', clickMe, false);
-document. getElementById('14').addEventListener( 'click', clickMe, false);
-document. getElementById('15').addEventListener( 'click', clickMe, false);
-document. getElementById('16').addEventListener( 'click', clickMe, false);
-document. getElementById('17').addEventListener( 'click', clickMe, false);
-document. getElementById('18').addEventListener( 'click', clickMe, false);
-document. getElementById('19').addEventListener( 'click', clickMe, false);
-document. getElementById('20').addEventListener( 'click', clickMe, false);
-document. getElementById('21').addEventListener( 'click', clickMe, false);
-document. getElementById('22').addEventListener( 'click', clickMe, false);
-document. getElementById('23').addEventListener( 'click', clickMe, false);
-document. getElementById('24').addEventListener( 'click', clickMe, false);
-document. getElementById('25').addEventListener( 'click', clickMe, false);
-document. getElementById('26').addEventListener( 'click', clickMe, false);
-document. getElementById('27').addEventListener( 'click', clickMe, false);
-document. getElementById('28').addEventListener( 'click', clickMe, false);
-document. getElementById('29').addEventListener( 'click', clickMe, false);
-document. getElementById('30').addEventListener( 'click', clickMe, false);
-document. getElementById('31').addEventListener( 'click', clickMe, false);
-document. getElementById('32').addEventListener( 'click', clickMe, false);
-document. getElementById('33').addEventListener( 'click', clickMe, false);
-document. getElementById('34').addEventListener( 'click', clickMe, false);
-document. getElementById('35').addEventListener( 'click', clickMe, false);
-document. getElementById('36').addEventListener( 'click', clickMe, false);
-document. getElementById('37').addEventListener( 'click', clickMe, false);
-document. getElementById('38').addEventListener( 'click', clickMe, false);
-document. getElementById('39').addEventListener( 'click', clickMe, false);
-document. getElementById('40').addEventListener( 'click', clickMe, false);
-document. getElementById('41').addEventListener( 'click', clickMe, false);
-document. getElementById('42').addEventListener( 'click', clickMe, false);
-document. getElementById('43').addEventListener( 'click', clickMe, false);
-document. getElementById('44').addEventListener( 'click', clickMe, false);
-document. getElementById('45').addEventListener( 'click', clickMe, false);
-document. getElementById('46').addEventListener( 'click', clickMe, false);
-document. getElementById('47').addEventListener( 'click', clickMe, false);
-document. getElementById('48').addEventListener( 'click', clickMe, false);
-document. getElementById('49').addEventListener( 'click', clickMe, false);
-document. getElementById('50').addEventListener( 'click', clickMe, false);
-document. getElementById('51').addEventListener( 'click', clickMe, false);
-document. getElementById('52').addEventListener( 'click', clickMe, false);
-document. getElementById('53').addEventListener( 'click', clickMe, false);
-document. getElementById('54').addEventListener( 'click', clickMe, false);
-document. getElementById('55').addEventListener( 'click', clickMe, false);
-document. getElementById('56').addEventListener( 'click', clickMe, false);
-document. getElementById('57').addEventListener( 'click', clickMe, false);
-document. getElementById('58').addEventListener( 'click', clickMe, false);
-document. getElementById('59').addEventListener( 'click', clickMe, false);
-document. getElementById('60').addEventListener( 'click', clickMe, false);
-document. getElementById('61').addEventListener( 'click', clickMe, false);
-document. getElementById('62').addEventListener( 'click', clickMe, false);
-document. getElementById('63').addEventListener( 'click', clickMe, false);
+document.getElementById("1").addEventListener("click", clickMe, false);
+document.getElementById("2").addEventListener("click", clickMe, false);
+document.getElementById("3").addEventListener("click", clickMe, false);
+document.getElementById("4").addEventListener("click", clickMe, false);
+document.getElementById("5").addEventListener("click", clickMe, false);
+document.getElementById("6").addEventListener("click", clickMe, false);
+document.getElementById("7").addEventListener("click", clickMe, false);
+document.getElementById("8").addEventListener("click", clickMe, false);
+document.getElementById("9").addEventListener("click", clickMe, false);
 
+// クリックしたセルの色を変える
+$(".cell").on("click", function () {
+  $(this).toggleClass("isActive");
+});
+// javascript版 うごかない
+// var cellelem = document.getElementById('cell').addEventListener('click', function(){
+//     this.classList.toggle('isActive');
+//   },false);
+
+// 名前空間を疑似的に作り変数名の競合を避ける
 var myNameSpace = {};
 myNameSpace.preElement = null;
 myNameSpace.rcvdata = null;
@@ -79,129 +34,121 @@ for(var y = 0; y < ban_ar.length; y++){
     }
 }
 
+// マスをクリックしたときの処理
 function clickMe(e) {
-    //this.textContent = this.id;
-    //縦座標と横座標の導出
-    var tate = Math.floor(this.id / 8) + 1;
-    var yoko = this.id % 8 + 1;
+  this.textContent = this.id;
+  if (null != myNameSpace.preElement) {
+    // 前回クリックしたマスのテキストを空にする
+    myNameSpace.preElement.textContent = "";
+  }
+  // 今回クリックしたマスの情報を保存
+  myNameSpace.preElement = this;
 
-    //クリックされたマスが空白かチェック
-    if(isEmptyCell(tate, yoko)){
-        //返せる石があるかチェック
-        if(checkCanPut(yoko, tate, mycolor)){
-            //ひっくり返す操作の要求
-            //ここにサーバーへ送信するコードを書く
-        }else{
-            //そこにはおけないと表示
-            displayError();
-        }
-    }else{
-        //そこにはおけないと表示
-        displayError();
-    }
+  document.getElementById("msg").textContent = this.id;
 
-    if (null != myNameSpace.preElement) {
-        myNameSpace.preElement.textContent = "";
-    }
-    myNameSpace.preElement = this;
+  // 通常のHTMLによるサーバ通信サンプル
+  postmsg(this.id);
 
-    document.getElementById("msg").textContent = this.id;
+  // jsonによるサーバ通信サンプル
+  jsonPost(this.id);
 
-    postmsg(this.id);
-    // document.getElementById("tmstmp").textContent = myNameSpace.rcvdata;
-
-};
-
-function isEmptyCell(y, x){
-    if(null == board_ar[y][x]){
-        return true;
-    }
-    return false;
+  // getTableImage();
 }
 
-function checkCanPut(x, y, color){
-    var reverse_cnt = 0;
-    //上
-    reverse_cnt = reverse_cnt + line_reverse(y, x, -1, 0, color)
-    //右上
-    reverse_cnt = reverse_cnt + line_reverse(y, x,-1, 1, color)
-    //右
-    reverse_cnt = reverse_cnt + line_reverse(y, x, 0, 1, color)
-    //右下
-    reverse_cnt = reverse_cnt + line_reverse(y, x, 1, 1, color)
-    //下
-    reverse_cnt = reverse_cnt + line_reverse(y, x, 1, 0, color)
-    //左下
-    reverse_cnt = reverse_cnt + line_reverse(y, x, 1,-1, color)
-    //左
-    reverse_cnt = reverse_cnt + line_reverse(y, x, 0,-1, color)
-    //左上
-    reverse_cnt = reverse_cnt + line_reverse(y, x,-1,-1, color)
-    
-    if(reverse_cnt == 0){
-        return false;
-    }else{
-        return true;
-    }
-}
-
-function line_reverse(y_sel,x_sel,add_y,add_x, myColor){
-    var line_reverse_cnt = 0; //一方向で裏返る数
-    var myStone_flg = 0; // その方向に自分の色の石があったか
-    var x_cur = x_sel;
-    var y_cur = y_sel;
-    while(true){
-        x_cur = x_cur + add_x;
-        y_cur = y_cur + add_y;
-        //盤外に出たら終了
-        if(x_cur < 0 || x_cur > 7 || y_cur < 0 || y_cur > 7) {
-            break;
-        }
-        //その場所に石が無かったら終了
-        if(ban_ar[y_cur][x_cur] == 0) {
-            break;
-        }
-        //その場所に自分の色の石があったら、フラグ建てて終了
-        if(ban_ar[y_cur][x_cur] == myColor) {
-            myStone_flg = 1;
-            break;
-        }
-        //それ以外、つまり相手の石があった場合はカウント加算
-        line_reverse_cnt++;
-    }
-    //カウントしたもの、フラグ立っていない場合はline_reverse_cntを0へ
-    if(line_reverse_cnt > 0){
-        if(myStone_flg == 0){
-            line_reverse_cnt = 0;
-        }
-    }
-    //裏返せる数を返す
-    return line_reverse_cnt
-}
-
-function displayError(){
-    alert("その場所に石を置くことはできません。")
-}
-
+// サーバへHTMLで送るサンプル
 function postmsg(id) {
-    // $.post("/demo/setposition", 
-    // {position: id},
-    //     function (data, textStatus, jqXHR) {
-    //         alert("rcv:" + timestamp);
-    //     },
-    //     "dataType"
-    // );
+  // $.post("/demo/setposition",
+  // {position: id},
+  //     function (data, textStatus, jqXHR) {
+  //         alert("rcv:" + timestamp);
+  //     },
+  //     "dataType"
+  // );
 
-    $.post("/demo/setposition", {position: id})
-        .done(function(data) {
-            // サーバからの戻りがdataに入る
-            // そこからidを指定して値を取得
-            var tmp = $(data).filter('#rcvmsg');
-            // alert("rcv : " + tmp.text() );
+  $.post("/demo/setposition", { position: id }).done(function (data) {
+    // サーバからの戻りがdataに入る
+    // データ形式はHTML、receive.htmlファイルがそれ
+    // そこからidを指定して値を取得
+    var tmp = $(data).filter("#rcvmsg");
+    // alert("rcv : " + tmp.text() );
 
-            // 設定先のidを取得して値を設定
-            var tmp2 = $('#tmstmp');
-            tmp2.text(tmp.text());
-        })
-    
+    // 設定先のidを取得して値を設定
+    var tmp2 = $("#tmstmp");
+    tmp2.text(tmp.text());
+  });
+}
+
+// サーバへjsonで送るサンプル
+function jsonPost(id) {
+  // 表示先のエリアを初期化
+  $("#jsr1").text("");
+  $("#jsr2").text("");
+
+  // 送信用jsonデータ
+
+  // 木構造のjson作成
+  // key名はjava側の変数名と合わせること
+  var demoDto = {
+    xpos: 1,
+    ypos: 2,
+  };
+  var sendjson = {
+    demoDto,
+    jsonSampleDto: getTableImage(),
+  };
+
+  // ajaxによる非同期通信処理
+  $.ajax({
+    url: "/sample/json",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(sendjson),
+    dataType: "json",
+  })
+    .done(function (date1, textStatus, jqXHR) {
+      // 正常応答時処理
+      // レスポンスコード表示
+      $("#jsr1").text(jqXHR.status);
+      // jsonデータを文字列にして表示
+      $("#jsr2").text(JSON.stringify(date1));
+
+      // 変数をidとして別のテーブルid指定する
+      setTableImage(date1["jsonSampleDto"]);
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      // 異常応答時処理
+      // レスポンスコード表示
+      $("#jsr1").text(jqXHR.status);
+    })
+    .always(function () {});
+}
+
+// tableをjson化する
+function getTableImage() {
+  var counter = 0;
+  var line = [];
+  // table要素内のtrの中のtdタグidとテキスト内容を配列に詰め込む
+  $("#tbl1 tr td").map(function (index, val) {
+    line[counter] = {
+      bangou: val.id,
+      name: $(val).text(),
+    };
+    counter += 1;
+  });
+
+  // 作成内容をコンソールに表示
+  // console.log(line);
+  // console.log(JSON.stringify(line));
+  return line;
+}
+
+// json配列の内容をテーブルに展開
+function setTableImage(params) {
+  var size = params.length;
+  for (cnt = 0; cnt < size; cnt++) {
+    // $(`#${id}a`).text(`${id}`);
+    var num = params[cnt].bangou;
+    var name = params[cnt].name;
+    $(`#${num}a`).text(`${name}`);
+  }
 }

@@ -3,4 +3,11 @@
     height: 50px;
     font-size: 20pt;
     text-align: center;
+    /* color: blueviolet; */
+    background-color: coral;
+    
+}
+
+.cell.isActive {
+    background-color: cornflowerblue;
 }
