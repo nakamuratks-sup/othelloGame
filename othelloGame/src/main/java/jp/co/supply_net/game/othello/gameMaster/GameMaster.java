@@ -12,17 +12,17 @@ public class GameMaster implements OthelloGameMaster {
 //	@Autowired
 //	private Convert con;
 	//private Board boa;
-	
-	
+
+
 	private OtheloBoard ob;
 	@Autowired
 	private OthelloBoardFactory obf;
-	
+
 	private OthelloEnemy oe;
 	@Autowired
 	private OthelloEnemyFactory oef;
-	
-	
+
+
 	/**
 	 * 先攻or後攻
 	 *
@@ -30,8 +30,8 @@ public class GameMaster implements OthelloGameMaster {
 	public static enum AttackTiming {
 		FIRST, SECOND
 	};
-	
-	
+
+
 	private int maxpath;
 	private AttackTiming playerStone;
 	private String passInfo;
@@ -39,7 +39,7 @@ public class GameMaster implements OthelloGameMaster {
 	private StoneType[][] latestBoard;
 	private StoneType stoneType;
 	private BoardInfo boardInfo;
-	
+
 //	public GameMaster() {
 //		// TODO 自動生成されたコンストラクター・スタブ
 //	}
@@ -51,36 +51,43 @@ public class GameMaster implements OthelloGameMaster {
 	public void setPlayerStone(int playerStone) {
 		//this.playerStone = playerStone;
 		this.playerStone = playerStone == 1 ? AttackTiming.FIRST: AttackTiming.SECOND;
-		
+
 	}
 
-	
+
 	@Override
 	//ゲーム開始
 	public void gameStart(int maxPath, int playerStone){
 		setPlayerStone(playerStone);
 		this.maxpath = maxPath;
-		
+
 	}
-	
+
 	public int getWhite() {
-		int countWhite = ob.getWhiteStone();
+		// TODO　暫定対処
+//		int countWhite = ob.getWhiteStone();
+		int countWhite = 15;
 		return countWhite;
-		
+
 	}
-	
+
 	public int getBlack() {
-		int countBlack = ob.getBlackStone();
+		// TODO　暫定対処
+//		int countBlack = ob.getBlackStone();
+		int countBlack = 18;
 		return countBlack;
-		
+
 	}
-	
+
 	//結果
 	public String gameFinish() {
 		String kekka = "";
-		int countWhite = ob.getWhiteStone();
-		int countBlack = ob.getBlackStone();
-		
+		// TODO　暫定対処
+//		int countWhite = ob.getWhiteStone();
+//		int countBlack = ob.getBlackStone();
+		int countWhite = 15;
+		int countBlack = 18;
+
 		if (countWhite > countBlack) {
 			kekka = "白の勝ちです";
 		}
@@ -92,23 +99,23 @@ public class GameMaster implements OthelloGameMaster {
 		}
 		return kekka;
 	}
-	
+
 	//オセロの流れ
 	public void gameProgram(AttackTiming playerStone, StoneType stoneType, BoardInfo boardInfo, Grid grid) {
-		
+
 		//先攻：人間
 		if (playerStone == AttackTiming.FIRST) {
 			humanOthelloTurn(grid);
-			
+
 		}
-		
+
 		//先攻：CPU
 		if (playerStone == AttackTiming.SECOND) {
 			cpuOthelloTurn(grid);
-			
+
 		}
 	}
-	
+
 
 	/*
 	 * CPUが先攻の場合の流れ
@@ -127,10 +134,10 @@ public class GameMaster implements OthelloGameMaster {
 			} else {
 				this.passInfo = null;
 			}
-			
+
 		//ボードから最新の盤面を取得
 		latestBoard = ob.getBoardImage();
-		
+
 		/*
 		 * 人間のターン
 		 */
@@ -138,26 +145,26 @@ public class GameMaster implements OthelloGameMaster {
 			stoneType = StoneType.WHITE;
 			//フロントから受け取った指定の場所に人間の石を置く
 			ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType);
-		
+
 			//ボードから最新の盤面を取得
 			latestBoard = ob.getBoardImage();
 	}
 
-	
+
 	/*
 	 * 人間が先攻の場合の流れ
 	 */
 	private void humanOthelloTurn(Grid grid) {
 
-		 
+
 		//stoneTypeに人間の色（黒）設定
 		stoneType = StoneType.BLACK;
 		//フロントから受け取った指定の場所に人間の石を置く
 		ob.putStone(grid.getXPosition(), grid.getYPosition(), stoneType);
-		
+
 		//ボードから最新の盤面を取得
 		latestBoard = ob.getBoardImage();
-		
+
 		/*
 		 * CPUのターン
 		 */
@@ -173,10 +180,10 @@ public class GameMaster implements OthelloGameMaster {
 				} else {
 					this.passInfo = null;
 				}
-			
+
 			//ボードから最新の盤面を取得
 			latestBoard = ob.getBoardImage();
-			
+
 	}
 
 	@Override
@@ -188,7 +195,7 @@ public class GameMaster implements OthelloGameMaster {
 		 */
 		//int xPosition = con.convertNumX(boardInfo.getBoardList());
 		//int yPosition = con.convertNumY(boardInfo.getBoardList());
-		
+
 		/*
 		 * ゲームの流れ
 		 */
@@ -200,7 +207,7 @@ public class GameMaster implements OthelloGameMaster {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
-	
 
-	
+
+
 }
