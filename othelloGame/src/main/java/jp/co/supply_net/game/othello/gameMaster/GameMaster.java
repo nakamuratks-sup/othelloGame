@@ -204,16 +204,24 @@ public class GameMaster implements OthelloGameMaster {
 	public void inputBoardInfo(BoardInfo boardInfo) {
 		// TODO 自動生成されたメソッド・スタブ
 		
-		/*
-		 * ゲームの流れ
-		 */
+		//ゲームの流れ
 		gameProgram(playerStone, boardInfo);
+		
+		
 	}
 
 	@Override
 	public BoardInfo outputBoardInfo() {
 		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		//リストをセット
+		boardInfo.setBoardList(con.convertMasuList(gridList));
+		//CPUが置いた場所をセット
+		Masu masu = con.convertMasu(enemyGrid);
+		boardInfo.setPutPosition(masu.getNumber());
+		//CPUがパスしたかどうかの情報をセット
+		boardInfo.setPassInfo(passInfo);
+		
+		return boardInfo;
 	}
 
 
