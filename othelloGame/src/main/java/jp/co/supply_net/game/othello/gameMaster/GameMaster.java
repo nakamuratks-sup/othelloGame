@@ -60,13 +60,21 @@ public class GameMaster implements OthelloGameMaster {
 	}
 	
 	//結果
-	public void gameFinish() {
-		int countEnemy = ob.countEnemyStone();
-		int countHuman = ob.countHumanStone();
+	public String gameFinish() {
+		String kekka = "";
+		int countWhite = ob.getWhiteStone();
+		int countBlack = ob.getBlackStone();
 		
-		if (countEnemy > countHuman) {
-			
+		if (countWhite > countBlack) {
+			kekka = "白の勝ちです";
 		}
+		if (countBlack > countWhite) {
+			kekka = "黒の勝ちです";
+		}
+		if (countWhite == countBlack) {
+			kekka = "引き分けです";
+		}
+		return kekka;
 	}
 	
 	//オセロの流れ

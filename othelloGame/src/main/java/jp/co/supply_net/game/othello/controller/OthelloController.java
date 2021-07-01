@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.supply_net.game.othello.dto.InitGameDto;
 import jp.co.supply_net.game.othello.gameMaster.OthelloGameMaster;
+import jp.co.supply_net.game.othello.gameMaster.OtheloBoard;
 
 @Controller
 @RequestMapping(path = "/othello")
@@ -19,6 +20,8 @@ public class OthelloController {
 
     @Autowired
     private OthelloGameMaster ogm;
+    @Autowired
+    private OtheloBoard ob;
     
     @RequestMapping(path = {"", "/index"}, method = RequestMethod.GET)
     public String firstView(Model model) {
@@ -45,9 +48,9 @@ public class OthelloController {
     public String resultView(Model model) {
         // ゲーム管理から石の数取得し勝敗判定
         // ゲーム結果画面表示
-        model.addAttribute("whitenum", "12");
-        model.addAttribute("blacknum", "18");
-        model.addAttribute("gameresult", "黒の勝ちです。");
+        model.addAttribute("whitenum", ob.getWhiteStone());
+        model.addAttribute("blacknum", ob.getBlackStone());
+        model.addAttribute("gameresult", "kekka");
         return "result";
     }
 }
