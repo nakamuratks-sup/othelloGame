@@ -16,5 +16,10 @@ public interface OtheloBoard {
 
     // 返せる石の数をカウント
     public int countTurnStone(int x, int y, StoneType stoneType);
+    
+    
+    public int getWhite();
+    
+    public int getBlack();
 
 }

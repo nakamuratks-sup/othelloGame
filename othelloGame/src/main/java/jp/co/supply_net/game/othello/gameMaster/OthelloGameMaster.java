@@ -10,5 +10,10 @@ public interface OthelloGameMaster {
 	
 	public void gameStart(int maxPath, int playerStone);
 	
-	
+	public int getWhite();
+    
+    public int getBlack();
+    
+    public String gameFinish();
+
 }

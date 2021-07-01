@@ -63,6 +63,18 @@ public class GameMaster implements OthelloGameMaster {
 		
 	}
 	
+	public int getWhite() {
+		int countWhite = ob.getWhiteStone();
+		return countWhite;
+		
+	}
+	
+	public int getBlack() {
+		int countBlack = ob.getBlackStone();
+		return countBlack;
+		
+	}
+	
 	//結果
 	public String gameFinish() {
 		String kekka = "";
