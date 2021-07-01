@@ -33,8 +33,7 @@ public class JsonController {
         ogm.inputBoardInfo(boardInfo);
         
         /*
-         * 送り返すようのボードインフォを作るメソッド（GM内）
-         * return BoardInfo
+         * フロントにBoardInfoを送り返す
          */
         return ogm.outputBoardInfo();
     }

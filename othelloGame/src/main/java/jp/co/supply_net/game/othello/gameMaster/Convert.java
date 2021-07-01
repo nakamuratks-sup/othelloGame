@@ -1,6 +1,7 @@
 package jp.co.supply_net.game.othello.gameMaster;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import jp.co.supply_net.game.othello.board.Grid;
@@ -15,13 +16,22 @@ public class Convert {
 	private int convertNumX(String number){
         int num = Integer.parseInt(number);
         int num_x = num % 8 - 1;
+        
+        if (num_x == 0) {
+        	num_x = 7;
+        }
 
         return num_x;
     }
 
     private int convertNumY(String number){
+    	int num_y = 0;
         int num = Integer.parseInt(number);
-        int num_y = num / 8;
+        int numY = num / 8;
+        
+        if (numY == 0) {
+        	num_y = numY - 1; 
+        }
 
         return num_y;
     }
@@ -110,4 +120,12 @@ public class Convert {
     }
     
     
+    //二次元配列をList<Grid>に変換
+  	public List<Grid> hairetsuToList(StoneType[][] latestBoard) {
+  		List<Grid> list = new ArrayList<>();
+  	    for (StoneType[] ll : latestBoard) {
+  	        list.add((Grid) Arrays.asList(ll));
+  	    }
+  	    return list;
+  	}
 }

@@ -138,7 +138,7 @@ public class GameMaster implements OthelloGameMaster {
 		//stoneTypeにCPUの色（白）設定
 		stoneType = StoneType.BLACK;
 		//CPUが石を置く
-		oe.enemyTurn(stoneType);
+		oe.enemyTurn(stoneType, gridList);
 		//CPUが置いた情報を取得
 		enemyGrid = oe.getLastSetGrid();
 			//CPUが置いた場所が、nullの場合パスを意味する
@@ -150,6 +150,9 @@ public class GameMaster implements OthelloGameMaster {
 
 		//ボードから最新の盤面を取得
 		latestBoard = ob.getBoardImage();
+	
+		// 二次元配列latestBoardをListに変換
+		this.gridList = con.hairetsuToList(latestBoard);
 
 		/*
 		 * 人間のターン
@@ -161,6 +164,9 @@ public class GameMaster implements OthelloGameMaster {
 
 			//ボードから最新の盤面を取得
 			latestBoard = ob.getBoardImage();
+			
+			// 二次元配列latestBoardをListに変換
+			this.gridList = con.hairetsuToList(latestBoard);
 	}
 
 
@@ -178,6 +184,9 @@ public class GameMaster implements OthelloGameMaster {
 
 		//ボードから最新の盤面を取得
 		latestBoard = ob.getBoardImage();
+		
+		// 二次元配列latestBoardをListに変換
+		this.gridList = con.hairetsuToList(latestBoard);
 
 		/*
 		 * CPUのターン
@@ -185,7 +194,7 @@ public class GameMaster implements OthelloGameMaster {
 			//stoneTypeにCPUの色（白）設定
 			stoneType = StoneType.WHITE;
 			//CPUが石を置く
-			oe.enemyTurn(stoneType);
+			oe.enemyTurn(stoneType, gridList);
 			//CPUが置いた情報を取得
 			enemyGrid = oe.getLastSetGrid();
 				//CPUが置いた場所が、nullの場合パスを意味する
@@ -197,6 +206,9 @@ public class GameMaster implements OthelloGameMaster {
 
 			//ボードから最新の盤面を取得
 			latestBoard = ob.getBoardImage();
+			
+			// 二次元配列latestBoardをListに変換
+			this.gridList = con.hairetsuToList(latestBoard);
 
 	}
 
@@ -223,7 +235,6 @@ public class GameMaster implements OthelloGameMaster {
 		
 		return boardInfo;
 	}
-
-
-
+	
+	
 }

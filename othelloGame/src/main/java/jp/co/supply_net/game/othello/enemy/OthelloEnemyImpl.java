@@ -19,16 +19,16 @@ public class OthelloEnemyImpl implements OthelloEnemy {
 	}
 
 	@Override
-	public void enemyTurn(StoneType stoneType) {
+	public void enemyTurn(StoneType stoneType, List<Grid> gridList) {
 		myStone = stoneType;
 		// ボードから空きのマス情報を取得
 		// ボードへ指定マスから返せる石の数を取得
-		List<Grid> list = serchPutEnableGrid(this.getEmptyGrid());
+		List<Grid> list = serchPutEnableGrid(this.getEmptyGrid(gridList));
 		if (0 != list.size()) {
 			// 最適解を計測
 			Grid bestGrid = getBestPosition(list);
 			// ボードに石を置く
-			otheloBoard.putStone(bestGrid.getXPosition(), bestGrid.getYPosition(), myStone);
+			otheloBoard.putStone(bestGrid.getXPosition(), bestGrid.getYPosition(), myStone, gridList);
 			lastSetGrid = bestGrid;
 		} else {
 			// 置ける場所がない場合は
@@ -42,6 +42,20 @@ public class OthelloEnemyImpl implements OthelloEnemy {
 	}
 
 	// ボードから空きのマス情報を取得
+	private List<Grid> getEmptyGrid(List<Grid> gridList) {
+		/*
+		 * リストの中からemptyだけを抽出
+		 */
+		List<Grid> emptyList = new ArrayList<>();
+		for (Grid grid: gridList) {
+			if (StoneType.EMPTY == grid.getSType()) {
+				emptyList.add(grid);
+			}
+		}
+		
+		return emptyList;
+		
+	}
 	private List<Grid> getEmptyGrid() {
 
 		StoneType[][] board = otheloBoard.getBoardImage();
