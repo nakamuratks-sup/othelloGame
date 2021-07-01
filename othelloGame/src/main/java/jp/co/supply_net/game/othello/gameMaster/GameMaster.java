@@ -61,20 +61,21 @@ public class GameMaster implements OthelloGameMaster {
 	
 	//結果
 	public void gameFinish() {
-		
+		int countEnemy = ob.countEnemyStone();
+		int countHuman = ob.countHumanStone()
 	}
 	
 	//オセロの流れ
-	public void gameProgram(int playerStone, AttackTiming timing, StoneType stoneType, BoardInfo boardInfo, Grid grid) {
+	public void gameProgram(AttackTiming playerStone, StoneType stoneType, BoardInfo boardInfo, Grid grid) {
 		
 		//先攻：人間
-		if (timing == AttackTiming.FIRST) {
+		if (playerStone == AttackTiming.FIRST) {
 			humanOthelloTurn(grid);
 			
 		}
 		
 		//先攻：CPU
-		if (timing == AttackTiming.SECOND) {
+		if (playerStone == AttackTiming.SECOND) {
 			cpuOthelloTurn(grid);
 			
 		}

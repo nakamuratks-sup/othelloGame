@@ -18,8 +18,8 @@ public interface OtheloBoard {
     public int countTurnStone(int x, int y, StoneType stoneType);
 	
     // 白の石の数を返す
-	public int countEnemyStone(int countEnemy);
+	public int countEnemyStone();
 	
 	// 黒の石の数を返す
-	public int countHumanStone(int countHuman);
+	public int countHumanStone();
 }
