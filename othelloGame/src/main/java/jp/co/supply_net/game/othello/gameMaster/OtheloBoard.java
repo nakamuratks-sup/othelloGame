@@ -18,8 +18,5 @@ public interface OtheloBoard {
     public int countTurnStone(int x, int y, StoneType stoneType);
     
     
-    public int getWhite();
     
-    public int getBlack();
-
 }
