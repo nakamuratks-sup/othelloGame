@@ -1,20 +1,42 @@
-// package jp.co.supply_net.game.othello.gameMaster;
+package jp.co.supply_net.game.othello.gameMaster;
 
-// public class Convert {
+import java.util.ArrayList;
+import java.util.List;
 
-//     public int convertNumX(boardList){
-//         int num = Integer.parseInt(number);
-//         int num_x = num % 8 - 1;
+import jp.co.supply_net.game.othello.board.Grid;
+import jp.co.supply_net.game.othello.dto.BoardInfo.Masu;
 
-//         return num_x;
+public class Convert {
 
-//     }
+	private int convertNumX(String number){
+        int num = Integer.parseInt(number);
+        int num_x = num % 8 - 1;
 
-//     public int convertNumY(boardList){
-//         int num = Integer.parseInt(number);
-//         int num_y = num / 8;
+        return num_x;
+    }
 
-//         return num_y;
-//     }
+    private int convertNumY(String number){
+        int num = Integer.parseInt(number);
+        int num_y = num / 8;
 
-// }
+        return num_y;
+    }
+
+    public Grid convertNum(String number) {
+    	Grid grid = new Grid();
+    	grid.setXPosition(this.convertNumX(number));
+    	grid.setYPosition(this.convertNumY(number));
+    	return grid;
+	}
+
+    public List<Grid> convertGridList(List<Masu> boardlist){
+    	List<Grid> list = new ArrayList<>();
+
+    	for(Masu masu: boardlist) {
+    		Grid grid = this.convertNum(masu.getNumber());
+    		list.add(grid);
+    	}
+    	return list;
+    }
+
+}

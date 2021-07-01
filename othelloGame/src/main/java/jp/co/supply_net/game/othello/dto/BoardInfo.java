@@ -15,6 +15,8 @@ public class BoardInfo implements Serializable{
     private String putPosition; //最後に置いた場所
     private String passInfo; //パスかどうかです
 
+    @Getter
+    @Setter
     public class Masu{
         private String number; //通し番号
         private String masuJoho; //黒、白、空
