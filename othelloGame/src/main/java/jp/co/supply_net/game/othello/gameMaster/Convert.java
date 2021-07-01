@@ -22,10 +22,11 @@ public class Convert {
         return num_y;
     }
 
-    public Grid convertNum(String number) {
+    public Grid convertNum(Masu masu) {
     	Grid grid = new Grid();
-    	grid.setXPosition(this.convertNumX(number));
-    	grid.setYPosition(this.convertNumY(number));
+    	grid.setXPosition(this.convertNumX(masu.getNumber()));
+    	grid.setYPosition(this.convertNumY(masu.getNumber()));
+        grid.setSType(this.changType(masu.getMasuJoho()));
     	return grid;
 	}
 
@@ -37,6 +38,11 @@ public class Convert {
     		list.add(grid);
     	}
     	return list;
+    }
+
+    private StoneType changType(String masuJoho) {
+        // 白黒空の判定する
+        return null;
     }
 
 }
