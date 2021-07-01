@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.supply_net.game.othello.dto.InitGameDto;
+import jp.co.supply_net.game.othello.gameMaster.GameMaster;
 import jp.co.supply_net.game.othello.gameMaster.OthelloGameMaster;
 import jp.co.supply_net.game.othello.gameMaster.OtheloBoard;
 
@@ -22,6 +23,8 @@ public class OthelloController {
     private OthelloGameMaster ogm;
     @Autowired
     private OtheloBoard ob;
+    @Autowired
+    private GameMaster gm;
     
     @RequestMapping(path = {"", "/index"}, method = RequestMethod.GET)
     public String firstView(Model model) {
@@ -50,7 +53,7 @@ public class OthelloController {
         // ゲーム結果画面表示
         model.addAttribute("whitenum", ob.getWhiteStone());
         model.addAttribute("blacknum", ob.getBlackStone());
-        model.addAttribute("gameresult", "kekka");
+        model.addAttribute("gameresult",gm.gameFinish());
         return "result";
     }
 }
