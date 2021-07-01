@@ -6,7 +6,9 @@ public interface OtheloBoard {
     public int getEmptySpace();
 
     // 指定の場所に石が置けるか判定
-    public Boolean isPutEnablePosition(int x, int y, StoneType stoneType);
+    //東public Boolean isPutEnablePosition(int xPosition, int yPosition, List<Masu> boardList);
+    public Boolean isPutEnablePosition(int xPosition, int yPosition, StoneType myStone);
+    
     // 指定の場所に石を置く
     public void putStone(int x, int y, StoneType stoneType);
 
@@ -15,4 +17,6 @@ public interface OtheloBoard {
 
     // 返せる石の数をカウント
     public int countTurnStone(int x, int y, StoneType stoneType);
+	
+	
 }

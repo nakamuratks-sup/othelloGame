@@ -1,31 +1,31 @@
 package jp.co.supply_net.game.othello.gameMaster;
-
 import org.springframework.beans.factory.annotation.Autowired;
+
+import jp.co.supply_net.game.othello.board.Grid;
+import jp.co.supply_net.game.othello.dto.BoardInfo;
+import jp.co.supply_net.game.othello.enemy.OthelloEnemy;
+
 
 public class GameMaster {
 
-	//@Autowired
+	@Autowired
 	//private Convert con;
 	//private Board boa;
-
+	private BoardCatchRelease bcr;
+	private OtheloBoard ob;
+	private OthelloEnemy oe;
+	
 	/**
 	 * 先攻or後攻
 	 *
 	 */
-	public static enum attack_timing {
+	public static enum AttackTiming {
 		FIRST, SECOND
 	};
 	
-	/**
-	 * マス要素
-	 *
-	 */
-	public static enum stone_type {
-		EMPTY, BLACK, WHITE
-	};
 	
 	private int maxpath;
-	private attack_timing playerStone;
+	private AttackTiming playerStone;
 //	private Bord bord;
 	
 //	public GameMaster() {
@@ -36,9 +36,9 @@ public class GameMaster {
 //	}
 //	playerStone = BLACK ? stone_type.BLACK: stone_type.WHITE;
 
-	public attack_timing setPlayerStone(int playerStone) {
+	public AttackTiming setPlayerStone(int playerStone) {
 		//this.playerStone = playerStone;
-		attack_timing timing = playerStone == 1 ? attack_timing.FIRST: attack_timing.SECOND;
+		AttackTiming timing = playerStone == 1 ? AttackTiming.FIRST: AttackTiming.SECOND;
 		return timing;
 	}
 
@@ -46,13 +46,43 @@ public class GameMaster {
 	//public void setMaxpath(int maxpath) {
 	//	this.maxpath = maxpath;
 	//}
-
-	public void gameStart(int maxPath, int playerStone){
+	
+	public void gameStart(int maxPath, int playerStone, BoardInfo boardInfo, Grid grid){
 		//Board boa = new Board();
 		this.playerStone = setPlayerStone(playerStone);
 		this.maxpath = maxPath;
+		
+		//東ob.isPutEnablePosition(grid.getXPosition(), grid.getYPosition(), boardInfo.getBoardList());
 
 	}
+	
+	//オセロの流れ
+	public void gameProgram(AttackTiming timing, BoardInfo boardInfo) {
+		//先攻：人間
+		if (timing == AttackTiming.FIRST) {
+			//フロントから受け取った指定の場所に人間の石を置く
+			//東ob.putStone(boardInfo.getBoardList(), boardInfo.getPutPosition());
+			
+			
+		}
+		//先攻：CPU
+		if (timing == AttackTiming.SECOND) {
+			//CPUが石を置く
+			oe.enemyTurn();
+			//CPUが置いた情報を取得
+			Grid enemyGrid = oe.getLastSetGrid();
+			//ボードから最新の盤面を取得
+			//東List<Masu> latestBoard = ob.getBoardImage();
+			
+			/* 
+			 * latestBoard 
+			 */
+			
+		}
+	}
+	
+	
+	
 
 
 

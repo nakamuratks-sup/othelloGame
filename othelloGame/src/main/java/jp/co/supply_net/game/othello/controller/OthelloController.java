@@ -35,7 +35,7 @@ public class OthelloController {
 //    	new GameMaster(maxPath);
     	//gm.setMaxpath(maxPath);
     	//gm.setPlayerStone(playerStone);
-        gm.gameStart(maxPath, playerStone);
+        //東gm.gameStart(maxPath, playerStone);
     	
         return "demoview";
     }

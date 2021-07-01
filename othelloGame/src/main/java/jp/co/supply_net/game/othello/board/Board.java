@@ -414,7 +414,7 @@ public class Board implements OtheloBoard{
   @Override
   public Boolean isPutEnablePosition(int x, int y, StoneType stoneType) {
     // TODO Auto-generated method stub
-    return null;
+    return true;
   }
 
   @Override
