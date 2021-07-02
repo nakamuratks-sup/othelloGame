@@ -1,5 +1,7 @@
 package jp.co.supply_net.game.othello.board;
 
+import java.util.List;
+
 import jp.co.supply_net.game.othello.gameMaster.OtheloBoard;
 import jp.co.supply_net.game.othello.gameMaster.StoneType;
 
@@ -455,8 +457,9 @@ public class Board implements OtheloBoard {
   }
 
   @Override
-  public void putStone(int x, int y, StoneType stoneType) {
+  public void putStone(int x, int y, StoneType stoneType, List<Grid> gridList) {
     // TODO Auto-generated method stub
+    // 二次元配列に変換してsetstoneに渡す
     setStone(x, y, stoneType);
 
   }
