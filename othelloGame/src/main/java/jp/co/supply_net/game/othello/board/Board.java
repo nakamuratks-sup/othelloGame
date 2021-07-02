@@ -2,11 +2,16 @@ package jp.co.supply_net.game.othello.board;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import jp.co.supply_net.game.othello.gameMaster.Convert;
 import jp.co.supply_net.game.othello.gameMaster.OtheloBoard;
 import jp.co.supply_net.game.othello.gameMaster.StoneType;
 
 public class Board implements OtheloBoard {
 
+  @Autowired
+  Convert conv;
   // ゲーム実行中フラグ
   private boolean game = true;
 
@@ -460,6 +465,8 @@ public class Board implements OtheloBoard {
   public void putStone(int x, int y, StoneType stoneType, List<Grid> gridList) {
     // TODO Auto-generated method stub
     // 二次元配列に変換してsetstoneに渡す
+    board = conv.listToHairetsu(gridList);
+    
     setStone(x, y, stoneType);
 
   }
@@ -467,7 +474,7 @@ public class Board implements OtheloBoard {
   @Override
   public StoneType[][] getBoardImage() {
     // TODO Auto-generated method stub
-    return null;
+    return this.board;
   }
 
   @Override
