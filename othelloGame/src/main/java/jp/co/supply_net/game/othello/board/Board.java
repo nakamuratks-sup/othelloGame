@@ -3,24 +3,24 @@ package jp.co.supply_net.game.othello.board;
 import jp.co.supply_net.game.othello.gameMaster.OtheloBoard;
 import jp.co.supply_net.game.othello.gameMaster.StoneType;
 
-public class Board implements OtheloBoard{
+public class Board implements OtheloBoard {
 
-  //ゲーム実行中フラグ
+  // ゲーム実行中フラグ
   private boolean game = true;
 
-  //オセロ版に対応した多次元配列
-  private StoneType[][] board ;
+  // オセロ版に対応した多次元配列
+  private StoneType[][] board;
 
-  //static final String EMPTY = "　";
-  //static final String BLACK = "●";
-  //static final String WHITE = "○";
+  // static final String EMPTY = " ";
+  // static final String BLACK = "●";
+  // static final String WHITE = "○";
 
-  //String stone;
-  //String rev_stone;
+  // String stone;
+  // String rev_stone;
 
   private void initialize() {
 
-    //オセロ版の要素を全てクリアする
+    // オセロ版の要素を全てクリアする
     for (int x = 0; x < 8; x++) {
 
       for (int y = 0; y < 8; y++) {
@@ -31,76 +31,74 @@ public class Board implements OtheloBoard{
 
     }
 
-    //初期状態の配置
+    // 初期状態の配置
     board[3][3] = StoneType.BLACK;
     board[3][4] = StoneType.WHITE;
     board[4][3] = StoneType.WHITE;
     board[4][4] = StoneType.BLACK;
 
-    //次うつ駒の色を指定
-    stone = StoneType.BLACK;
-    rev_stone = StoneType.WHITE;
+    // 次うつ駒の色を指定
+    // stone = StoneType.BLACK;
+    // rev_stone = StoneType.WHITE;
 
-    //ゲーム実行中フラグ
-    game = true;
-
-  }
-
-  private void showBoard() {
-
-    //まだ空いている座標があるか
-    int existempty = 0;
-    //黒い駒の数集計用
-    int cnt_black = 0;
-    //白い駒の数集計用
-    int cnt_white = 0;
-
- 
-
-    //オセロ版を描写する
-    int i = 0;
-    System.out.println(" |0 |1 |2 |3 |4 |5 |6 |7 |");
-    System.out.println("――――――――――――――");
-    for (String[] sarr : board) {
-
-      System.out.print(i + " |");
-      for (String s : sarr) {
-
-        System.out.print(s);
-        System.out.print("|");
-
-        //空いている座標があるか、各駒数の集計
-        if (s.equals(EMPTY)) {
-          existempty = true;
-        } else if (s.equals(BLACK)) {
-          cnt_black++;
-        } else if (s.equals(WHITE)) {
-          cnt_white++;
-        }
-
-      }
-      System.out.println();
-      System.out.println("――――――――――――――");
-
-      i++;
-
-    }
-
-    System.out.println(BLACK + ":" + cnt_black);
-    System.out.println(WHITE + ":" + cnt_white);
-    System.out.println("――――――――――――――");
-
-    if (existempty) {
-
-      System.out.println(stone + "のターンです");
-    } else {
-      System.out.println(stone + "ゲーム終了！");
-      game = false;
-    }
+    // ゲーム実行中フラグ
+    // game = true;
 
   }
 
-  private void setStone(int x, int y) {
+  // private void showBoard() {
+
+  // //まだ空いている座標があるか
+  // int existempty = 0;
+  // //黒い駒の数集計用
+  // int cnt_black = 0;
+  // //白い駒の数集計用
+  // int cnt_white = 0;
+
+  // //オセロ版を描写する
+  // int i = 0;
+  // System.out.println(" |0 |1 |2 |3 |4 |5 |6 |7 |");
+  // System.out.println("――――――――――――――");
+  // for (String[] sarr : board) {
+
+  // System.out.print(i + " |");
+  // for (String s : sarr) {
+
+  // System.out.print(s);
+  // System.out.print("|");
+
+  // //空いている座標があるか、各駒数の集計
+  // if (s.equals(EMPTY)) {
+  // existempty = true;
+  // } else if (s.equals(BLACK)) {
+  // cnt_black++;
+  // } else if (s.equals(WHITE)) {
+  // cnt_white++;
+  // }
+
+  // }
+  // System.out.println();
+  // System.out.println("――――――――――――――");
+
+  // i++;
+
+  // }
+
+  // System.out.println(BLACK + ":" + cnt_black);
+  // System.out.println(WHITE + ":" + cnt_white);
+  // System.out.println("――――――――――――――");
+
+  // if (existempty) {
+
+  // System.out.println(stone + "のターンです");
+  // } else {
+  // System.out.println(stone + "ゲーム終了！");
+  // game = false;
+  // }
+
+  // }
+
+  private void setStone(int x, int y, StoneType stone) {
 
     // 版外の座標を指定した場合
     if (x > 7 || y > 7) {
@@ -108,19 +106,19 @@ public class Board implements OtheloBoard{
     }
 
     // 駒を配置できる場合
-    if (board[y][x].equals(EMPTY)) {
+    if (board[y][x].equals(StoneType.EMPTY)) {
       board[y][x] = stone;
 
       // ひっくり返す処理
-      turnStone(x, y);
+      turnStone(x, y, stone);
 
-      // 次うつ駒の設定
-      String next_rev_storn = stone;
-      stone = rev_stone;
-      rev_stone = next_rev_storn;
+      // // 次うつ駒の設定
+      // String next_rev_storn = stone;
+      // stone = rev_stone;
+      // rev_stone = next_rev_storn;
 
       // オセロ版の描写
-      showBoard();
+      // showBoard();
 
     } else {
 
@@ -130,26 +128,29 @@ public class Board implements OtheloBoard{
 
   }
 
-  private void turnStone(int x, int y) {
+  private void turnStone(int x, int y, StoneType stoneType) {
 
+    StoneType stone = stoneType;
+    StoneType rev_stone = stone == StoneType.WHITE ? StoneType.BLACK : StoneType.WHITE;
     // 8方向の駒の配置を確認し、ひっくり返す
 
-    turnLeftUp(x, y);
-    turnUp(x, y);
-    turnRightUp(x, y);
-    turnLeft(x, y);
-    turnRight(x, y);
-    turnLeftDown(x, y);
-    turnDown(x, y);
-    turnRightDown(x, y);
+    turnLeftUp(x, y, stone, rev_stone);
+    turnUp(x, y, stone, rev_stone);
+    turnRightUp(x, y, stone, rev_stone);
+    turnLeft(x, y, stone, rev_stone);
+    turnRight(x, y, stone, rev_stone);
+    turnLeftDown(x, y, stone, rev_stone);
+    turnDown(x, y, stone, rev_stone);
+    turnRightDown(x, y, stone, rev_stone);
 
   }
 
-  private void turnLeftUp(int x, int y) {
+  private void turnLeftUp(int x, int y, StoneType stone, StoneType rev_stone) {
+
     if (y > 1 && x > 1) {
 
       // となりの駒
-      String next = board[y - 1][x - 1];
+      StoneType next = board[y - 1][x - 1];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -157,7 +158,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (x - i < 0 || y - i < 0 || board[y - i][x - i].equals(EMPTY)) {
+          if (x - i < 0 || y - i < 0 || board[y - i][x - i].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y - i][x - i].equals(stone)) {
@@ -176,11 +177,11 @@ public class Board implements OtheloBoard{
     }
   }
 
-  private void turnUp(int x, int y) {
+  private void turnUp(int x, int y, StoneType stone, StoneType rev_stone) {
     if (y > 1) {
 
       // となりの駒
-      String next = board[y - 1][x];
+      StoneType next = board[y - 1][x];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -188,7 +189,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (y - i < 0 || board[y - i][x].equals(EMPTY)) {
+          if (y - i < 0 || board[y - i][x].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y - i][x].equals(stone)) {
@@ -207,11 +208,11 @@ public class Board implements OtheloBoard{
     }
   }
 
-  private void turnRightUp(int x, int y) {
+  private void turnRightUp(int x, int y, StoneType stone, StoneType rev_stone) {
     if (y > 1 && x < 6) {
 
       // となりの駒
-      String next = board[y - 1][x + 1];
+      StoneType next = board[y - 1][x + 1];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -219,7 +220,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (x + i > 7 || y - i < 0 || board[y - i][x + i].equals(EMPTY)) {
+          if (x + i > 7 || y - i < 0 || board[y - i][x + i].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y - i][x + i].equals(stone)) {
@@ -238,11 +239,11 @@ public class Board implements OtheloBoard{
     }
   }
 
-  private void turnDown(int x, int y) {
+  private void turnDown(int x, int y, StoneType stone, StoneType rev_stone) {
     if (y < 6) {
 
       // となりの駒
-      String next = board[y + 1][x];
+      StoneType next = board[y + 1][x];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -250,7 +251,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (y + i > 7 || board[y + i][x].equals(EMPTY)) {
+          if (y + i > 7 || board[y + i][x].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y + i][x].equals(stone)) {
@@ -269,11 +270,11 @@ public class Board implements OtheloBoard{
     }
   }
 
-  private void turnRight(int x, int y) {
+  private void turnRight(int x, int y, StoneType stone, StoneType rev_stone) {
     if (x < 6) {
 
       // となりの駒
-      String next = board[y][x + 1];
+      StoneType next = board[y][x + 1];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -281,7 +282,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (x + i > 7 || board[y][x + i].equals(EMPTY)) {
+          if (x + i > 7 || board[y][x + i].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y][x + i].equals(stone)) {
@@ -300,11 +301,11 @@ public class Board implements OtheloBoard{
     }
   }
 
-  private void turnLeftDown(int x, int y) {
+  private void turnLeftDown(int x, int y, StoneType stone, StoneType rev_stone) {
     if (y < 6 && x > 1) {
 
       // となりの駒
-      String next = board[y + 1][x - 1];
+      StoneType next = board[y + 1][x - 1];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -312,7 +313,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (x - i < 0 || y + i > 7 || board[y + i][x - i].equals(EMPTY)) {
+          if (x - i < 0 || y + i > 7 || board[y + i][x - i].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y + i][x - i].equals(stone)) {
@@ -331,11 +332,11 @@ public class Board implements OtheloBoard{
     }
   }
 
-  private void turnLeft(int x, int y) {
+  private void turnLeft(int x, int y, StoneType stone, StoneType rev_stone) {
     if (x > 1) {
 
       // となりの駒
-      String next = board[y][x - 1];
+      StoneType next = board[y][x - 1];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -343,7 +344,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (x - i < 0 || board[y][x - i].equals(EMPTY)) {
+          if (x - i < 0 || board[y][x - i].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y][x - i].equals(stone)) {
@@ -362,11 +363,11 @@ public class Board implements OtheloBoard{
     }
   }
 
-  private void turnRightDown(int x, int y) {
+  private void turnRightDown(int x, int y, StoneType stone, StoneType rev_stone) {
     if (y < 6 && x < 6) {
 
       // となりの駒
-      String next = board[y + 1][x + 1];
+      StoneType next = board[y + 1][x + 1];
 
       // となりの駒が裏駒の場合
       if (next.equals(rev_stone)) {
@@ -374,7 +375,7 @@ public class Board implements OtheloBoard{
         // さらにその一つとなりから順に確認
         for (int i = 2; true; i++) {
 
-          if (x + i > 7 || y + i > 7 || board[y + i][x + i].equals(EMPTY)) {
+          if (x + i > 7 || y + i > 7 || board[y + i][x + i].equals(StoneType.EMPTY)) {
             // 駒がない場合終了
             break;
           } else if (board[y + i][x + i].equals(stone)) {
@@ -395,15 +396,14 @@ public class Board implements OtheloBoard{
 
   @Override
   public int getWhiteStone() {
-    // TODO Auto-generated method stub
-    //白石集計
+    // 白石集計
     int cnt_white = 0;
     int x = board.length;
     int y = board[0].length;
 
-    for (int countx = 0; countx < x; countx++){
-      for (int county = 0; county < y; county++){
-        if (board[countx][county] == StoneType.WHITE){
+    for (int countx = 0; countx < x; countx++) {
+      for (int county = 0; county < y; county++) {
+        if (board[countx][county] == StoneType.WHITE) {
           cnt_white = cnt_white + 1;
         }
       }
@@ -413,15 +413,14 @@ public class Board implements OtheloBoard{
 
   @Override
   public int getBlackStone() {
-    // TODO Auto-generated method stub
-    //黒石集計
+    // 黒石集計
     int cnt_black = 0;
     int x = board.length;
     int y = board[0].length;
 
-    for (int countx = 0; countx < x; countx++){
-      for (int county = 0; county < y; county++){
-        if (board[countx][county] == StoneType.BLACK){
+    for (int countx = 0; countx < x; countx++) {
+      for (int county = 0; county < y; county++) {
+        if (board[countx][county] == StoneType.BLACK) {
           cnt_black = cnt_black + 1;
         }
       }
@@ -431,15 +430,14 @@ public class Board implements OtheloBoard{
 
   @Override
   public int getEmptySpace() {
-    // TODO Auto-generated method stub
-    //空欄集計
+    // 空欄集計
     int cnt_empty = 0;
     int x = board.length;
     int y = board[0].length;
 
-    for (int countx = 0; countx < x; countx++){
-      for (int county = 0; county < y; county++){
-        if (board[countx][county] == StoneType.EMPTY){
+    for (int countx = 0; countx < x; countx++) {
+      for (int county = 0; county < y; county++) {
+        if (board[countx][county] == StoneType.EMPTY) {
           cnt_empty = cnt_empty + 1;
         }
       }
@@ -450,24 +448,17 @@ public class Board implements OtheloBoard{
   @Override
   public Boolean isPutEnablePosition(int x, int y, StoneType stoneType) {
     // TODO Auto-generated method stub
-    
-      turnLeftUp(x, y);
-      turnUp(x, y);
-      turnRightUp(x, y);
-      turnLeft(x, y);
-      turnRight(x, y);
-      turnLeftDown(x, y);
-      turnDown(x, y);
-      turnRightDown(x, y);
-    
+
+    // turnStone(x, y, stoneType);
+
     return true;
   }
-
 
   @Override
   public void putStone(int x, int y, StoneType stoneType) {
     // TODO Auto-generated method stub
-    
+    setStone(x, y, stoneType);
+
   }
 
   @Override
